@@ -2,7 +2,8 @@
 <decorators defaultdir="/decorators">
 
     <excludes>
-
+        <pattern>/api*</pattern>
+        <pattern>/logout</pattern>
     </excludes>
 
     <!-- apply Sitemesh default template -->
@@ -13,5 +14,10 @@
     <!-- apply Sitemesh default template -->
     <decorator name="admin" page="admin.jsp">
         <pattern>/admin*</pattern>
+    </decorator>
+
+    <!-- apply Sitemesh default template -->
+    <decorator name="login" page="login.jsp">
+        <pattern>/login</pattern>
     </decorator>
 </decorators>

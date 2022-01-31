@@ -21,13 +21,13 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
            aria-expanded="true" aria-controls="collapseUser">
-            <i class="far fa-fw fa-window-maximize"></i>
+            <i class="fa fas fa-users"></i>
             <span>Quản lý tài khoản</span>
         </a>
         <div id="collapseUser" class="collapse" aria-labelledby="headingUser" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý tài khoản</h6>
-                <a class="collapse-item" href="#">Danh sách tài khoản</a>
+                <a class="collapse-item" href="<c:url value='/admin/user/list'/>">Danh sách tài khoản</a>
             </div>
         </div>
     </li>
