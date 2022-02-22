@@ -34,13 +34,13 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRent" aria-expanded="true"
            aria-controls="collapseRent">
-            <i class="fab fa-fw fa-wpforms"></i>
+            <i class="fa fas fa-building"></i>
             <span>Quản lý cho thuê</span>
         </a>
         <div id="collapseRent" class="collapse" aria-labelledby="headingRent" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý tòa nhà</h6>
-                <a class="collapse-item" href="form_basics.html">Tòa nhà cho thuê</a>
+                <a class="collapse-item" href="<c:url value='/admin/building/list'/>">Tòa nhà cho thuê</a>
                 <a class="collapse-item" href="form_basics.html">Quản lý quận</a>
             </div>
         </div>

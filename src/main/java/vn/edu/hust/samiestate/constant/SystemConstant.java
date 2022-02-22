@@ -43,7 +43,7 @@ public class SystemConstant {
     public static final String CUSTOMER_ALIAS = "c.";
     public static final String EQUAL_OPERATOR = "=";
     public static final List<String> SPECIAL_PARAMS_FOR_BUILDING_SEARCH =
-            Arrays.asList("buildingtypes", "arearentfrom", "arearentto", "costrentfrom", "costrentto", "staffid");
+            Arrays.asList("arearentfrom", "arearentto", "costrentfrom", "costrentto", "staffid", "districtcode");
     public static final List<String> SPECIAL_PARAMS_FOR_CUSTOMER_SEARCH =
             Arrays.asList("staffid");
 

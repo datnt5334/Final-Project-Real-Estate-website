@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import vn.edu.hust.samiestate.entity.UserEntity;
 
+import java.util.List;
+
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     UserEntity findOneByUserNameAndStatus(String name, int status);
@@ -15,4 +17,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     long countByStatusNot(int status);
     UserEntity findOneByUserName(String userName);
     void deleteByIdIn(long[] ids);
+    List<UserEntity> findByStatusAndRoles_Code(Integer status, String roleCode);
+    List<UserEntity> findByBuildings_Id(Long buildingId);
 }

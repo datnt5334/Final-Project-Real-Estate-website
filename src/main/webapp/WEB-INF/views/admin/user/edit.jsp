@@ -52,7 +52,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Thông tin tài khoản</h6>
                 </div>
                 <div class="card-body">
-                    <form:form id="editForm" modelAttribute="model">
+                    <form:form id="editUserForm" modelAttribute="model" name="editUserForm">
                         <div class="form-group">
                             <label for="userName">Tên đăng nhập</label>
                             <c:if test="${not empty model.id}">
@@ -104,7 +104,7 @@
                         </div>
                         <c:if test="${not empty model.id}">
                             <button type="submit" class="btn btn-primary" id="addOrUpdateUserBtn">Cập nhật</button>
-                            <button type="submit" class="btn btn-warning" id="resetPasswordBtn">Reset mật khẩu</button>
+                            <button type="button" class="btn btn-warning" id="resetPasswordBtn">Reset mật khẩu</button>
                         </c:if>
                         <c:if test="${empty model.id}">
                             <button type="submit" class="btn btn-primary" id="addOrUpdateUserBtn">Thêm mới</button>
@@ -117,32 +117,36 @@
     </div>
 </div>
 <script type="text/javascript">
-    $("#addOrUpdateUserBtn").click(function (event) {
-        event.preventDefault();
-        let formData = $("#editForm").serializeArray();
-        let dataArray = {};
-        $.each(formData, function (i, v) {
-            dataArray["" + v.name + ""] = v.value;
+
+    $(function() {
+        $("form[name='editUserForm']").validate({
+            rules: {
+                userName: "required",
+                fullName: "required",
+                roleCode: "required"
+            },
+            messages: {
+                userName: "Không được bỏ trống",
+                fullName: "Không được bỏ trống",
+                roleCode: "Chưa được lựa chọn"
+            },
+            submitHandler: function(form) {
+                let formData = $("#editUserForm").serializeArray();
+                let dataArray = {};
+                $.each(formData, function (i, v) {
+                    dataArray["" + v.name + ""] = v.value;
+                });
+                if ($('#userId').val() != "") {
+                    let userId = $('#userId').val();
+                    updateUser(dataArray, userId);
+                }
+                else {
+                    addUser(dataArray);
+                }
+            }
         });
-        if ($('#userId').val() != "") {
-            let userId = $('#userId').val();
-            let roleCode = dataArray['roleCode'];
-            if (roleCode != '') {
-                updateUser(dataArray, userId);
-            } else {
-                window.location.href = "<c:url value='/admin/user/edit-"+userId+"?message=role_require'/>";
-            }
-        }
-        else {
-            let userName = dataArray['userName'];
-            let roleCode = dataArray['roleCode'];
-            if (userName != '' && roleCode != '') {
-                addUser(dataArray);
-            } else {
-                window.location.href = "<c:url value='/admin/user/edit?message=username_role_require'/>";
-            }
-        }
     });
+
     function addUser(data) {
         $.ajax({
             url: '${formUrl}',

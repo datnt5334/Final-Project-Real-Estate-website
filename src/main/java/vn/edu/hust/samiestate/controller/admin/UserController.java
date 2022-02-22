@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import vn.edu.hust.samiestate.constant.SystemConstant;
 import vn.edu.hust.samiestate.dto.UserDTO;
 import vn.edu.hust.samiestate.dto.response.UserSearchResponse;
-import vn.edu.hust.samiestate.security.utils.SecurityUtils;
 import vn.edu.hust.samiestate.service.impl.RoleService;
 import vn.edu.hust.samiestate.service.impl.UserService;
 import vn.edu.hust.samiestate.utils.ResponseUtils;

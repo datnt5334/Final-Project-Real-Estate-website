@@ -59,11 +59,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#changePasswordBtn').click(function (event) {
-            $('#changePasswordBtn').submit();
-        });
-    });
+
     $(function() {
         $("form[name='formChangePassword']").validate({
             rules: {

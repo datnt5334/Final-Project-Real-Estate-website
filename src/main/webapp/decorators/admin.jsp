@@ -13,6 +13,7 @@
     <link href="<c:url value="/template/admin/img/logo/logo.png"/>" rel="icon">
     <link href="<c:url value="/template/admin/vendor/fontawesome-free/css/all.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value="/template/admin/vendor/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/template/admin/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css"/>" rel="stylesheet" >
     <link href="<c:url value="/template/admin/css/ruang-admins.css"/>" rel="stylesheet">
     <script src="<c:url value="/template/admin/vendor/jquery/jquery.min.js"/>"></script>
     <script src="<c:url value="/template/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
@@ -45,6 +46,6 @@
 <script src="<c:url value="/template/admin/vendor/jquery-easing/jquery.easing.min.js"/>"></script>
 <script src="<c:url value="/template/admin/js/ruang-admin.min.js"/>"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-
+<script src="<c:url value="/template/admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"/>"></script>
 </body>
 </html>

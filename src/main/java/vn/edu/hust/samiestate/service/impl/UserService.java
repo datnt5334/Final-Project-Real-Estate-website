@@ -20,9 +20,7 @@ import vn.edu.hust.samiestate.repository.RoleRepository;
 import vn.edu.hust.samiestate.repository.UserRepository;
 import vn.edu.hust.samiestate.service.IUserService;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -159,6 +157,16 @@ public class UserService implements IUserService {
                 .orElseThrow(() -> new NotFoundException(SystemConstant.USER_NOT_FOUND));
         userFoundOptional.get().setPassword(passwordEncoder.encode(SystemConstant.PASSWORD_DEFAULT));
         return userConverter.convertToDto(userRepository.save(userFoundOptional.get()));
+    }
+
+    @Override
+    public Map<Long, String> getStaffMaps() {
+        Map<Long, String> results = new HashMap<>();
+        List<UserEntity> staffs = userRepository.findByStatusAndRoles_Code(1, SystemConstant.STAFF_ROLE);
+        for (UserEntity item: staffs) {
+            results.put(item.getId(), item.getFullName());
+        }
+        return results;
     }
 
 }

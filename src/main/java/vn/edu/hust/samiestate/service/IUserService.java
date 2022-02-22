@@ -7,6 +7,7 @@ import vn.edu.hust.samiestate.dto.response.UserSearchResponse;
 import vn.edu.hust.samiestate.exception.PasswordFailException;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IUserService {
 
@@ -21,4 +22,5 @@ public interface IUserService {
     void updatePassword(String userName, PasswordDTO passwordDTO) throws PasswordFailException;
     void delete(long[] ids);
     UserDTO resetPassword(long id);
+    Map<Long, String> getStaffMaps();
 }

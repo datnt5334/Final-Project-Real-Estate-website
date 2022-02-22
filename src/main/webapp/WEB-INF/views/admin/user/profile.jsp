@@ -35,7 +35,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Thông tin cá nhân</h6>
                 </div>
                 <div class="card-body">
-                    <form:form id="editForm" modelAttribute="model">
+                    <form:form id="editProfileForm" modelAttribute="model" name="editProfileForm">
                         <div class="form-group">
                             <label for="userName">Tên đăng nhập</label>
                             <form:input path="userName" id="userName" cssClass="form-control" disabled="true"/>
@@ -67,10 +67,15 @@
                                 <input type="file" class="custom-file-input" onchange="previewFile()">
                                 <label class="custom-file-label" for="customFile">Chọn ảnh đại diện</label>
                                 <hr>
-                                <img class="img-thumbnail" id="avatar" src="${model.profilepicture}" height="200" width="300" alt="Chưa có ảnh">
+                                <c:if test="${empty model.profilepicture}">
+                                    <img class="img-thumbnail" id="avatar" src="<c:url value="/template/admin/img/no_image.jpg"/>" height="200" width="300" alt="Chưa có ảnh">
+                                </c:if>
+                                <c:if test="${not empty model.profilepicture}">
+                                    <img class="img-thumbnail" id="avatar" src="${model.profilepicture}" height="200" width="300" alt="Ảnh đại diện">
+                                </c:if>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="UpdateUserBtn">Cập nhật</button>
+                        <button type="submit" class="btn btn-primary" id="UpdateUserBtn">Cập nhật thông tin</button>
                         <form:hidden path="id" id="userId"/>
                         <form:hidden path="profilepicture" id="profilepicture"/>
                     </form:form>
@@ -99,17 +104,26 @@
         }
     }
 
-    $("#UpdateUserBtn").click(function (event) {
-        event.preventDefault();
-        let formData = $("#editForm").serializeArray();
-        let dataArray = {};
-        $.each(formData, function (i, v) {
-            dataArray["" + v.name + ""] = v.value;
+    $(function() {
+        $("form[name='editProfileForm']").validate({
+            rules: {
+                fullName: "required",
+            },
+            messages: {
+                fullName: "Không được bỏ trống",
+            },
+            submitHandler: function(form) {
+                let formData = $("#editProfileForm").serializeArray();
+                let dataArray = {};
+                $.each(formData, function (i, v) {
+                    dataArray["" + v.name + ""] = v.value;
+                });
+                if ($('#userName').val() != "") {
+                    let userName = $('#userName').val();
+                    updateInfo(dataArray, userName);
+                }
+            }
         });
-        if ($('#userName').val() != "") {
-            let userName = $('#userName').val();
-            updateInfo(dataArray, userName);
-        }
     });
 
     function updateInfo(data, username) {
