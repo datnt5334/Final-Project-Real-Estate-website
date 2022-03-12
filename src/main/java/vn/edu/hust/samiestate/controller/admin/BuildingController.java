@@ -2,7 +2,6 @@ package vn.edu.hust.samiestate.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import vn.edu.hust.samiestate.constant.SystemConstant;
 import vn.edu.hust.samiestate.dto.BuildingDTO;
-import vn.edu.hust.samiestate.dto.RentAreaDTO;
 import vn.edu.hust.samiestate.dto.request.BuildingSearchRequest;
 import vn.edu.hust.samiestate.dto.response.BuildingSearchResponse;
 import vn.edu.hust.samiestate.service.IBuildingService;
 import vn.edu.hust.samiestate.service.IDistrictService;
 import vn.edu.hust.samiestate.service.IUserService;
-import vn.edu.hust.samiestate.service.impl.BuildingService;
-import vn.edu.hust.samiestate.service.impl.DistrictService;
 import vn.edu.hust.samiestate.utils.ResponseUtils;
 
 import javax.servlet.http.HttpServletRequest;

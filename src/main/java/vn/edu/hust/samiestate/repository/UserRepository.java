@@ -19,4 +19,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     void deleteByIdIn(long[] ids);
     List<UserEntity> findByStatusAndRoles_Code(Integer status, String roleCode);
     List<UserEntity> findByBuildings_Id(Long buildingId);
+    List<UserEntity> findByCustomers_Id(Long customerId);
 }

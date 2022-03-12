@@ -37,7 +37,6 @@ public class BuildingConverter {
 
     public BuildingDTO convertToDTO(BuildingEntity entity) {
         BuildingDTO result = modelMapper.map(entity, BuildingDTO.class);
-
         return result;
     }
 

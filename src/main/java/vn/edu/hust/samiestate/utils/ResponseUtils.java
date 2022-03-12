@@ -1,7 +1,6 @@
 package vn.edu.hust.samiestate.utils;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import vn.edu.hust.samiestate.constant.SystemConstant;
 

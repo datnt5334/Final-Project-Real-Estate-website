@@ -19,6 +19,7 @@ import vn.edu.hust.samiestate.exception.FieldNullOrEmptyException;
 import vn.edu.hust.samiestate.exception.NotFoundException;
 import vn.edu.hust.samiestate.repository.BuildingRepository;
 import vn.edu.hust.samiestate.repository.UserRepository;
+import vn.edu.hust.samiestate.security.utils.SecurityUtils;
 import vn.edu.hust.samiestate.service.IBuildingService;
 import vn.edu.hust.samiestate.utils.ValidateUtils;
 
@@ -72,6 +73,10 @@ public class BuildingService implements IBuildingService {
     @Override
     public List<BuildingSearchResponse> getBuildings(BuildingSearchRequest request, Pageable pageable) {
         List<BuildingSearchResponse> results = new ArrayList<>();
+
+        if (SecurityUtils.getAuthorities().contains(SystemConstant.STAFF_ROLE)) {
+            request.setStaffId(SecurityUtils.getPrincipal().getId());
+        }
 
         BuildingSearchBuilder builder = initBuildingSearchBuilder(request);
 
@@ -146,5 +151,6 @@ public class BuildingService implements IBuildingService {
                 .setAreaRentTo(request.getAreaRentTo()).setCostRentFrom(request.getCostRentFrom())
                 .setCostRentTo(request.getCostRentTo()).setDistrictCode(request.getDistrictCode()).build();
         return results;
+
     }
 }

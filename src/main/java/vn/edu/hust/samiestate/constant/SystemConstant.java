@@ -45,6 +45,6 @@ public class SystemConstant {
     public static final List<String> SPECIAL_PARAMS_FOR_BUILDING_SEARCH =
             Arrays.asList("arearentfrom", "arearentto", "costrentfrom", "costrentto", "staffid", "districtcode");
     public static final List<String> SPECIAL_PARAMS_FOR_CUSTOMER_SEARCH =
-            Arrays.asList("staffid");
+            Arrays.asList("staffid", "statuscode");
 
 }

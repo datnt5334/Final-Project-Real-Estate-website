@@ -35,7 +35,7 @@ public class BuildingDTO extends AbstractDTO {
     private String managerPhone;
     private String managerName;
     private String districtCode;
-    private List<RentAreaEntity> rentAreas = new ArrayList<>();
+    private List<RentAreaDTO> rentAreas = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -253,11 +253,11 @@ public class BuildingDTO extends AbstractDTO {
         this.districtCode = districtCode;
     }
 
-    public List<RentAreaEntity> getRentAreas() {
+    public List<RentAreaDTO> getRentAreas() {
         return rentAreas;
     }
 
-    public void setRentAreas(List<RentAreaEntity> rentAreas) {
+    public void setRentAreas(List<RentAreaDTO> rentAreas) {
         this.rentAreas = rentAreas;
     }
 }
