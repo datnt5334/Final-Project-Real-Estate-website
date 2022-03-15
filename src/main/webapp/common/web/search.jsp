@@ -1,93 +1,79 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp"%>
-
+<c:url var="formSearchUrl" value="/properties-search"/>
 <div class="box-collapse">
     <div class="title-box-d">
-        <h3 class="title-d">Search Property</h3>
+        <h3 class="title-d">Tìm kiếm văn phòng</h3>
     </div>
     <span class="close-box-collapse right-boxed ion-ios-close"></span>
     <div class="box-collapse-wrap form">
-        <form class="form-a">
+        <form:form modelAttribute="modelSearch" cssClass="form-a" action="${formSearchUrl}" id="buildingSearchForm" method="GET">
             <div class="row">
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
-                        <label for="Type">Keyword</label>
-                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+                        <label for="name">Tên tòa nhà</label>
+                        <form:input path="name" id="name" cssClass="form-control form-control-lg form-control-a"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group">
-                        <label for="Type">Type</label>
-                        <select class="form-control form-control-lg form-control-a" id="Type">
-                            <option>All Type</option>
-                            <option>For Rent</option>
-                            <option>For Sale</option>
-                            <option>Open House</option>
-                        </select>
+                        <label for="areaRentFrom">Diện tích từ (m<sup>2</sup>)</label>
+                        <form:input path="areaRentFrom" id="areaRentFrom" cssClass="form-control form-control-lg form-control-a"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group">
-                        <label for="city">City</label>
-                        <select class="form-control form-control-lg form-control-a" id="city">
-                            <option>All City</option>
-                            <option>Alabama</option>
-                            <option>Arizona</option>
-                            <option>California</option>
-                            <option>Colorado</option>
-                        </select>
+                        <label for="areaRentTo">Diện tích đến (m<sup>2</sup>)</label>
+                        <form:input path="areaRentTo" id="areaRentTo" cssClass="form-control form-control-lg form-control-a"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group">
-                        <label for="bedrooms">Bedrooms</label>
-                        <select class="form-control form-control-lg form-control-a" id="bedrooms">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                        </select>
+                        <label for="costRentFrom">Giá thuê từ ($/m<sup>2</sup>)</label>
+                        <form:input path="costRentFrom" id="costRentFrom" cssClass="form-control form-control-lg form-control-a"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group">
-                        <label for="garages">Garages</label>
-                        <select class="form-control form-control-lg form-control-a" id="garages">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                        </select>
+                        <label for="costRentTo">Giá thuê đến ($/m<sup>2</sup>)</label>
+                        <form:input path="costRentTo" id="costRentTo" cssClass="form-control form-control-lg form-control-a"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group">
-                        <label for="bathrooms">Bathrooms</label>
-                        <select class="form-control form-control-lg form-control-a" id="bathrooms">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                        </select>
+                        <label for="level">Hạng</label>
+                        <form:input path="level" id="level" cssClass="form-control form-control-lg form-control-a"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group">
-                        <label for="price">Min Price</label>
-                        <select class="form-control form-control-lg form-control-a" id="price">
-                            <option>Unlimite</option>
-                            <option>$50,000</option>
-                            <option>$100,000</option>
-                            <option>$150,000</option>
-                            <option>$200,000</option>
-                        </select>
+                        <label for="direction">Hướng</label>
+                        <form:input path="direction" id="direction" cssClass="form-control form-control-lg form-control-a"/>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="districtCode">Quận</label>
+                        <form:select path="districtCode" id="districtCode" cssClass="form-control form-control-lg form-control-a">
+                            <form:option value="" label="--- Chọn quận ---"/>
+                            <form:options items="${districtsMap}"/>
+                        </form:select>
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-b">Search Property</button>
+                    <button id="btnSearch" type="button" class="btn btn-b">Tìm kiếm kết quả</button>
                 </div>
             </div>
-        </form>
+            <form:hidden path="page" id="pageSearch"/>
+        </form:form>
     </div>
 </div>
+
+<script type="text/javascript">
+    //submit search
+    $(document).ready(function () {
+        $('#btnSearch').click(function () {
+            $('#buildingSearchForm').submit();
+        });
+    });
+</script>

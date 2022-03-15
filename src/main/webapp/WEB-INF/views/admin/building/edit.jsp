@@ -84,7 +84,7 @@
                             <label for="structure">
                                 <strong>Kết cấu</strong>
                             </label>
-                            <form:input path="structure" cssClass="form-control" id="structure"/>
+                            <form:textarea path="structure" rows = "5" cols = "30" id="structure" cssClass="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="numberOfBasement">
@@ -204,13 +204,7 @@
                             <label for="note">
                                 <strong>Ghi chú</strong>
                             </label>
-                            <form:input path="note" cssClass="form-control" id="note"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="map">
-                                <strong>Bản đồ</strong>
-                            </label>
-                            <form:input path="map" cssClass="form-control" id="map"/>
+                            <form:textarea path = "note" rows = "5" cols = "30" id="note" cssClass="form-control"/>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 img-rps">

@@ -1,7 +1,5 @@
 package vn.edu.hust.samiestate.dto;
 
-import vn.edu.hust.samiestate.entity.RentAreaEntity;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +9,7 @@ public class BuildingDTO extends AbstractDTO {
     private String name;
     private String street;
     private String ward;
+    private String address;
     private String structure;
     private Integer numberOfBasement;
     private Integer floorArea;
@@ -36,6 +35,7 @@ public class BuildingDTO extends AbstractDTO {
     private String managerName;
     private String districtCode;
     private List<RentAreaDTO> rentAreas = new ArrayList<>();
+    private String rentArea;
 
     public String getName() {
         return name;
@@ -59,6 +59,14 @@ public class BuildingDTO extends AbstractDTO {
 
     public void setWard(String ward) {
         this.ward = ward;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getStructure() {
@@ -259,5 +267,13 @@ public class BuildingDTO extends AbstractDTO {
 
     public void setRentAreas(List<RentAreaDTO> rentAreas) {
         this.rentAreas = rentAreas;
+    }
+
+    public String getRentArea() {
+        return rentArea;
+    }
+
+    public void setRentArea(String rentArea) {
+        this.rentArea = rentArea;
     }
 }

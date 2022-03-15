@@ -234,7 +234,7 @@
                                 <td class="col-1">${item.managerName}</td>
                                 <td class="col-1">${item.managerPhone}</td>
                                 <td class="col-1">${item.floorArea}</td>
-                                <td class="col-1">${item.rentPrice}</td>
+                                <td class="col-1">${item.rentPriceDescription}</td>
                                 <td class="col-2">
                                     <span>
                                     <a flag="info" class="dt-button buttons-colvis btn btn-white btn-success btn-bold"

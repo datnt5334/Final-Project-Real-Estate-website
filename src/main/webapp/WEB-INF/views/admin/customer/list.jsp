@@ -198,7 +198,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Bạn có chắc là muốn xóa dữ liệu tài khoản chứ?</p>
+                    <p>Bạn có chắc là muốn xóa dữ liệu khách hàng chứ?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy bỏ</button>

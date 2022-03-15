@@ -18,6 +18,7 @@ public class BuildingEntity extends BaseEntity {
     @Column(name = "ward")
     private String ward;
 
+    @Lob
     @Column(name = "structure")
     private String structure;
 
@@ -72,6 +73,7 @@ public class BuildingEntity extends BaseEntity {
     @Column(name = "brokeragefee")
     private BigDecimal brokerageFee;
 
+    @Lob
     @Column(name = "note")
     private String note;
 
@@ -88,8 +90,7 @@ public class BuildingEntity extends BaseEntity {
     @Column(name = "managername")
     private String managerName;
 
-    @OneToMany(mappedBy="building", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST,
-              CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy="building", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
     private List<RentAreaEntity> rentAreas = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

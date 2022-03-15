@@ -12,7 +12,9 @@ import vn.edu.hust.samiestate.repository.DistrictRepository;
 import vn.edu.hust.samiestate.utils.DateUtils;
 import vn.edu.hust.samiestate.utils.ValidateUtils;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class BuildingConverter {
@@ -37,6 +39,31 @@ public class BuildingConverter {
 
     public BuildingDTO convertToDTO(BuildingEntity entity) {
         BuildingDTO result = modelMapper.map(entity, BuildingDTO.class);
+
+        //address
+        StringBuilder address = new StringBuilder();
+        String street = entity.getStreet();
+        String ward = entity.getWard();
+        String districtCode = entity.getDistrict().getCode();
+        String districtName = entity.getDistrict().getName();
+        if (ValidateUtils.isValidProperty(street)) {
+            address.append(street).append(", ");
+        }
+        if (ValidateUtils.isValidProperty(ward)) {
+            address.append(ward).append(", ");
+        }
+        if (ValidateUtils.isValidProperty(districtCode)) {
+            address.append(districtName);
+        }
+        result.setAddress(address.toString());
+
+        //rentArea String
+        List<Integer> rentAreaValues = entity.getRentAreas().stream().map(item -> item.getValue())
+                .distinct().collect(Collectors.toList());
+        String rentAreaString = rentAreaValues.stream().map(item -> ""+item+"").
+                collect(Collectors.joining(", "));
+        result.setRentArea(rentAreaString);
+
         return result;
     }
 
@@ -63,6 +90,15 @@ public class BuildingConverter {
             address.append(districtName);
         }
         buildingSearchResponse.setAddress(address.toString());
+
+        //rentArea String
+        List<Integer> rentAreaValues = entity.getRentAreas().stream().map(item -> item.getValue())
+                .distinct().collect(Collectors.toList());
+        String rentAreaString = rentAreaValues.stream().map(item -> ""+item+"").
+                collect(Collectors.joining(", "));
+        buildingSearchResponse.setRentArea(rentAreaString);
+
         return buildingSearchResponse;
+
     }
 }

@@ -16,6 +16,9 @@
             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
         </ol>
     </div>
+    <div class="text-center">
+        <img src="<c:url value='/template/admin/img/think.svg'/>" style="max-height: 120px">
+    </div>
 </div>
 <!---Container Fluid-->
 </body>

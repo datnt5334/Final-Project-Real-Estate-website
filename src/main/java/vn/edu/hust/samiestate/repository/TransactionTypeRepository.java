@@ -5,4 +5,5 @@ import vn.edu.hust.samiestate.entity.TransactionTypeEntity;
 
 public interface TransactionTypeRepository extends JpaRepository<TransactionTypeEntity, Long> {
     TransactionTypeEntity findByCode(String code);
+    void deleteByIdIn(long[] ids);
 }

@@ -10,6 +10,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <link href="<c:url value="/template/admin/img/logo/logo.png"/>" rel="icon">
 
     <!-- Favicons -->
     <link href="img/favicon.png" rel="icon">
@@ -20,7 +21,10 @@
 
     <!-- Bootstrap CSS File -->
     <link href="<c:url value="/template/web/lib/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script src="<c:url value="/template/web/js/jquery.twbsPagination.js"/>" type="text/javascript"></script>
+    <link rel="stylesheet" href="<c:url value="/template/web/css/paginationStyle.css"/>">
     <!-- Libraries CSS Files -->
     <link href="<c:url value="/template/web/lib/font-awesome/css/font-awesome.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/template/web/lib/animate/animate.min.css"/>" rel="stylesheet">
@@ -29,6 +33,8 @@
 
     <!-- Main Stylesheet File -->
     <link href="<c:url value="/template/web/css/style.css"/>" rel="stylesheet">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 <body>
@@ -48,10 +54,10 @@
 <div id="preloader"></div>
 
 <!-- JavaScript Libraries -->
-<script src="<c:url value="/template/web/lib/jquery/jquery.min.js"></c:url>"></script>
-<script src="<c:url value="/template/web/lib/jquery/jquery-migrate.min.js"/>"></script>
+<%--<script src="<c:url value="/template/web/lib/jquery/jquery.min.js"></c:url>"></script>--%>
+<%--<script src="<c:url value="/template/web/lib/jquery/jquery-migrate.min.js"/>"></script>--%>
 <script src="<c:url value="/template/web/lib/popper/popper.min.js"/>"></script>
-<script src="<c:url value="/template/web/lib/bootstrap/js/bootstrap.min.js"/>"></script>
+<%--<script src="<c:url value="/template/web/lib/bootstrap/js/bootstrap.min.js"/>"></script>--%>
 <script src="<c:url value="/template/web/lib/easing/easing.min.js"/>"></script>
 <script src="<c:url value="/template/web/lib/owlcarousel/owl.carousel.min.js"/>"></script>
 <script src="<c:url value="/template/web/lib/scrollreveal/scrollreveal.min.js"/>"></script>
@@ -61,5 +67,6 @@
 
 <!-- Template Main Javascript File -->
 <script src="<c:url value="/template/web/js/main.js"/>"></script>
+
 </body>
 </html>

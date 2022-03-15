@@ -2,7 +2,7 @@
 <%@ include file="/common/taglib.jsp"%>
 
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/trang-chu'/>">
         <div class="sidebar-brand-icon">
             <img class="logo-img" src="<c:url value="/template/admin/img/logo/logo.png"/>">
         </div>
@@ -47,7 +47,7 @@
                 <h6 class="collapse-header">Quản lý cho thuê</h6>
                 <a class="collapse-item" href="<c:url value='/admin/building/list'/>">Tòa nhà cho thuê</a>
                 <security:authorize access="hasRole('MANAGER')">
-                    <a class="collapse-item" href="#">Quản lý quận</a>
+                    <a class="collapse-item" href="<c:url value='/admin/district/list'/>">Quản lý quận</a>
                 </security:authorize>
             </div>
         </div>
@@ -67,9 +67,9 @@
     </li>
     <security:authorize access="hasRole('MANAGER')">
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<c:url value='/admin/transaction/list'/>">
                 <i class="fas fa-exchange-alt"></i>
-                <span>Quản lý giao dịch</span>
+                <span>Quản lý loại giao dịch</span>
             </a>
         </li>
     </security:authorize>

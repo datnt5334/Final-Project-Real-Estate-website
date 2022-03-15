@@ -14,8 +14,7 @@ public class DistrictEntity extends BaseEntity {
     @Column(name = "code")
     private String code;
 
-    @OneToMany(mappedBy="district", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST,
-            CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy="district", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
     private List<BuildingEntity> buildingEntities = new ArrayList<>();
 
     public String getName() {

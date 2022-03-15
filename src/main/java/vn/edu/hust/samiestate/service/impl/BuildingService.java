@@ -9,6 +9,7 @@ import vn.edu.hust.samiestate.constant.SystemConstant;
 import vn.edu.hust.samiestate.converter.BuildingConverter;
 import vn.edu.hust.samiestate.converter.UserConverter;
 import vn.edu.hust.samiestate.dto.BuildingDTO;
+import vn.edu.hust.samiestate.dto.UserDTO;
 import vn.edu.hust.samiestate.dto.request.AssignmentBuildingRequest;
 import vn.edu.hust.samiestate.dto.request.BuildingSearchRequest;
 import vn.edu.hust.samiestate.dto.response.BuildingSearchResponse;
@@ -90,6 +91,19 @@ public class BuildingService implements IBuildingService {
     }
 
     @Override
+    public List<BuildingDTO> getLatestBuildings(Pageable pageable) {
+        List<BuildingDTO> results = new ArrayList<>();
+
+        List<BuildingEntity> buildingEntities = buildingRepository.findAllByOrderByIdDesc(pageable);
+
+        for (BuildingEntity item: buildingEntities) {
+            results.add(buildingConverter.convertToDTO(item));
+        }
+
+        return results;
+    }
+
+    @Override
     public int getTotalItems(BuildingSearchRequest request) {
         int result = 0;
         if (Objects.nonNull(request)) {
@@ -106,6 +120,16 @@ public class BuildingService implements IBuildingService {
         List<UserEntity> staffOfBuilding = userRepository.findByBuildings_Id(buildingId);
         for (UserEntity item : allStaffs) {
             results.add(userConverter.convertToStaffAssignResponse(item, staffOfBuilding));
+        }
+        return results;
+    }
+
+    @Override
+    public List<UserDTO> getAssignStaffsOfBuilding(Long buildingId) {
+        List<UserDTO> results = new ArrayList<>();
+        List<UserEntity> staffOfBuilding = userRepository.findByBuildings_Id(buildingId);
+        for (UserEntity item : staffOfBuilding) {
+            results.add(userConverter.convertToDto(item));
         }
         return results;
     }

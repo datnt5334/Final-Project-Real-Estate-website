@@ -86,7 +86,7 @@
                             <label for="note">
                                 <strong>Ghi chú</strong>
                             </label>
-                            <form:input path="note" cssClass="form-control" id="note"/>
+                            <form:textarea path="note" rows = "5" cols = "30" id="note" cssClass="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="status">

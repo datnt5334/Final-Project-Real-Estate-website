@@ -5,6 +5,8 @@ public class StaffAssignResponse {
     private Long id;
     private String fullName;
     private String email;
+    private String phone;
+    private String profilepicture;
     private String checked;
 
 
@@ -44,4 +46,19 @@ public class StaffAssignResponse {
         this.checked = checked;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getProfilepicture() {
+        return profilepicture;
+    }
+
+    public void setProfilepicture(String profilepicture) {
+        this.profilepicture = profilepicture;
+    }
 }

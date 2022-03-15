@@ -5,4 +5,5 @@ import vn.edu.hust.samiestate.entity.DistrictEntity;
 
 public interface DistrictRepository extends JpaRepository<DistrictEntity, Long> {
     DistrictEntity findByCode(String code);
+    void deleteByIdIn(long[] ids);
 }

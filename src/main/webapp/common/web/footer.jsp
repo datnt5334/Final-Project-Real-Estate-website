@@ -7,18 +7,17 @@
             <div class="col-sm-12 col-md-4">
                 <div class="widget-a">
                     <div class="w-header-a">
-                        <h3 class="w-title-a text-brand">EstateAgency</h3>
+                        <h3 class="w-title-a text-brand">Sami Estate</h3>
                     </div>
                     <div class="w-body-a">
                         <p class="w-text-a color-text-a">
-                            Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
-                            sed aute irure.
+                            Sami Estate - Đơn Vị Cho Thuê Văn Phòng Hàng Đầu Tại Việt Nam
                         </p>
                     </div>
                     <div class="w-footer-a">
                         <ul class="list-unstyled">
                             <li class="color-a">
-                                <span class="color-text-a">Phone .</span> contact@example.com</li>
+                                <span class="color-text-a">Phone .</span> samiestate@gmail.com</li>
                             <li class="color-a">
                                 <span class="color-text-a">Email .</span> +54 356 945234</li>
                         </ul>
@@ -28,28 +27,30 @@
             <div class="col-sm-12 col-md-4 section-md-t3">
                 <div class="widget-a">
                     <div class="w-header-a">
-                        <h3 class="w-title-a text-brand">The Company</h3>
+                        <h3 class="w-title-a text-brand">Văn phòng cho thuê</h3>
                     </div>
                     <div class="w-body-a">
                         <div class="w-body-a">
                             <ul class="list-unstyled">
+                                <c:forEach var="item" items="${districtMap}">
+                                    <li class="item-list-a">
+                                        <i class="fa fa-angle-right"></i> <a href="#">Văn phòng hạng A</a>
+                                    </li>
+                                </c:forEach>
                                 <li class="item-list-a">
-                                    <i class="fa fa-angle-right"></i> <a href="#">Site Map</a>
+                                    <i class="fa fa-angle-right"></i> <a href="#">Văn phòng hạng A</a>
                                 </li>
                                 <li class="item-list-a">
-                                    <i class="fa fa-angle-right"></i> <a href="#">Legal</a>
+                                    <i class="fa fa-angle-right"></i> <a href="#">Văn phòng hạng B</a>
                                 </li>
                                 <li class="item-list-a">
-                                    <i class="fa fa-angle-right"></i> <a href="#">Agent Admin</a>
+                                    <i class="fa fa-angle-right"></i> <a href="#">Văn phòng hạng C</a>
                                 </li>
                                 <li class="item-list-a">
-                                    <i class="fa fa-angle-right"></i> <a href="#">Careers</a>
+                                    <i class="fa fa-angle-right"></i> <a href="#">Văn phòng giá rẻ</a>
                                 </li>
                                 <li class="item-list-a">
-                                    <i class="fa fa-angle-right"></i> <a href="#">Affiliate</a>
-                                </li>
-                                <li class="item-list-a">
-                                    <i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a>
+                                    <i class="fa fa-angle-right"></i> <a href="#">Văn phòng trọn gói</a>
                                 </li>
                             </ul>
                         </div>
@@ -59,28 +60,15 @@
             <div class="col-sm-12 col-md-4 section-md-t3">
                 <div class="widget-a">
                     <div class="w-header-a">
-                        <h3 class="w-title-a text-brand">International sites</h3>
+                        <h3 class="w-title-a text-brand">Theo Quận</h3>
                     </div>
                     <div class="w-body-a">
                         <ul class="list-unstyled">
-                            <li class="item-list-a">
-                                <i class="fa fa-angle-right"></i> <a href="#">Venezuela</a>
-                            </li>
-                            <li class="item-list-a">
-                                <i class="fa fa-angle-right"></i> <a href="#">China</a>
-                            </li>
-                            <li class="item-list-a">
-                                <i class="fa fa-angle-right"></i> <a href="#">Hong Kong</a>
-                            </li>
-                            <li class="item-list-a">
-                                <i class="fa fa-angle-right"></i> <a href="#">Argentina</a>
-                            </li>
-                            <li class="item-list-a">
-                                <i class="fa fa-angle-right"></i> <a href="#">Singapore</a>
-                            </li>
-                            <li class="item-list-a">
-                                <i class="fa fa-angle-right"></i> <a href="#">Philippines</a>
-                            </li>
+                            <c:forEach var="item" items="${districtsMap}">
+                                <li class="item-list-a">
+                                    <i class="fa fa-angle-right"></i> <a href="#">${item.value}</a>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -95,19 +83,16 @@
                 <nav class="nav-footer">
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <a href="#">Home</a>
+                            <a href="#">Trang chủ</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#">About</a>
+                            <a href="#">Về chúng tôi</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#">Property</a>
+                            <a href="#">Tòa nhà văn phòng</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#">Blog</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Contact</a>
+                            <a href="#">Liên hệ</a>
                         </li>
                     </ul>
                 </nav>

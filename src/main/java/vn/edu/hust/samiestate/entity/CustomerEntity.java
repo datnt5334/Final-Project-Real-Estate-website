@@ -20,6 +20,7 @@ public class CustomerEntity extends BaseEntity{
     @Column(name = "company")
     private String company;
 
+    @Lob
     @Column(name = "note")
     private String note;
 
