@@ -25,8 +25,8 @@ public class DetailController {
     public ModelAndView getDetail(@PathVariable("id") Long id) {
         ModelAndView mav = new ModelAndView("web/detail");
         BuildingDTO model = buildingService.findBuildingById(id);
-        mav.addObject("districtsMap", districtService.getDistrict());
-        mav.addObject("modelSearch", new BuildingSearchRequest());
+        mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
+        mav.addObject(SystemConstant.MODEL_SEARCH, new BuildingSearchRequest());
         mav.addObject("staffs", buildingService.getAssignStaffsOfBuilding(id));
         mav.addObject(SystemConstant.MODEL, model);
         return mav;

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import vn.edu.hust.samiestate.constant.SystemConstant;
 import vn.edu.hust.samiestate.dto.request.BuildingSearchRequest;
 import vn.edu.hust.samiestate.dto.response.BuildingSearchResponse;
 import vn.edu.hust.samiestate.service.IDistrictService;
@@ -32,7 +33,7 @@ public class SearchPropertiesController {
                 PageRequest.of(modelSearch.getPage() - 1, modelSearch.getMaxPageItems()));
         modelSearch.setListResult(responseList);
         modelSearch.setTotalItems(buildingService.getTotalItems(modelSearch));
-        mav.addObject("districtsMap", districtService.getDistrict());
+        mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
         return mav;
     }
 }

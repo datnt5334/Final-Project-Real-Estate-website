@@ -33,8 +33,8 @@ public class PropertiesController {
                 PageRequest.of(model.getPage() - 1, model.getMaxPageItems()));
         model.setListResult(buildingDTOList);
         model.setTotalItems(buildingService.getTotalItems(new BuildingSearchRequest()));
-        mav.addObject("districtsMap", districtService.getDistrict());
-        mav.addObject("modelSearch", new BuildingSearchRequest());
+        mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
+        mav.addObject(SystemConstant.MODEL_SEARCH, new BuildingSearchRequest());
         return mav;
     }
 

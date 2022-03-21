@@ -15,6 +15,10 @@ public class SystemConstant {
 
     //model
     public static final String MODEL = "model";
+    public static final String MODEL_SEARCH = "modelSearch";
+    public static final String DISTRICT_MAP = "districtsMap";
+    public static final String STAFFS_MAP = "staffsMap";
+    public static final String CUSTOMER_STATUS_MAP = "customerStatusMap";
 
     //message
     public static final String INSERT_SUCCESS = "insert_success";

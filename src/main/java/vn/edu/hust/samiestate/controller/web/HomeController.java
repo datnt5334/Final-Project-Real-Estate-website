@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import vn.edu.hust.samiestate.constant.SystemConstant;
 import vn.edu.hust.samiestate.dto.request.BuildingSearchRequest;
 import vn.edu.hust.samiestate.service.IDistrictService;
 import vn.edu.hust.samiestate.service.impl.BuildingService;
@@ -38,8 +39,8 @@ public class HomeController {
                 PageRequest.of(0, 3)));
         mav.addObject("buildingRankC", buildingService.getBuildings(request3,
                 PageRequest.of(0, 3)));
-        mav.addObject("districtsMap", districtService.getDistrict());
-        mav.addObject("modelSearch", new BuildingSearchRequest());
+        mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
+        mav.addObject(SystemConstant.MODEL_SEARCH, new BuildingSearchRequest());
         return mav;
     }
 

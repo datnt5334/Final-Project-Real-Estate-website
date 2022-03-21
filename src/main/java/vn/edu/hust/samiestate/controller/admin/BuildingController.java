@@ -40,8 +40,8 @@ public class BuildingController {
                 PageRequest.of(model.getPage() - 1, model.getMaxPageItems()));
         model.setListResult(responseList);
         model.setTotalItems(buildingService.getTotalItems(model));
-        mav.addObject("districtsMap", districtService.getDistrict());
-        mav.addObject("staffsMap", userService.getStaffMaps());
+        mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
+        mav.addObject(SystemConstant.STAFFS_MAP, userService.getStaffMaps());
         ResponseUtils.initMessageResponse(mav, request);
         return mav;
     }
@@ -49,7 +49,7 @@ public class BuildingController {
     @RequestMapping(value = "/admin/building/edit", method = RequestMethod.GET)
     public ModelAndView addBuilding(@ModelAttribute(SystemConstant.MODEL) BuildingDTO model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/building/edit");
-        mav.addObject("districtsMap", districtService.getDistrict());
+        mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
         ResponseUtils.initMessageResponse(mav, request);
         return mav;
     }
@@ -58,7 +58,7 @@ public class BuildingController {
     public ModelAndView updateBuilding(@PathVariable("id") Long id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/building/edit");
         BuildingDTO model = buildingService.findBuildingById(id);
-        mav.addObject("districtsMap", districtService.getDistrict());
+        mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
         mav.addObject(SystemConstant.MODEL, model);
         ResponseUtils.initMessageResponse(mav, request);
         return mav;

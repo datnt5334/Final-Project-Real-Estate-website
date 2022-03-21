@@ -44,8 +44,8 @@ public class CustomerController {
                 PageRequest.of(model.getPage() - 1, model.getMaxPageItems()));
         model.setListResult(responseList);
         model.setTotalItems(customerService.getTotalItems(model));
-        mav.addObject("staffsMap", userService.getStaffMaps());
-        mav.addObject("customerStatusMap", customerStatusService.getStatus());
+        mav.addObject(SystemConstant.STAFFS_MAP, userService.getStaffMaps());
+        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerStatusService.getStatus());
         ResponseUtils.initMessageResponse(mav, request);
         return mav;
     }
@@ -53,7 +53,7 @@ public class CustomerController {
     @RequestMapping(value = "/admin/customer/edit", method = RequestMethod.GET)
     public ModelAndView addCustomer(@ModelAttribute(SystemConstant.MODEL) CustomerDTO model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/customer/edit");
-        mav.addObject("customerStatusMap", customerStatusService.getStatus());
+        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerStatusService.getStatus());
         ResponseUtils.initMessageResponse(mav, request);
         return mav;
     }
@@ -62,7 +62,7 @@ public class CustomerController {
     public ModelAndView updateCustomer(@PathVariable("id") Long id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/customer/edit");
         CustomerDTO model = customerService.findCustomerById(id);
-        mav.addObject("customerStatusMap", customerStatusService.getStatus());
+        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerStatusService.getStatus());
         mav.addObject("transactionTypesMap", transactionTypeService.getTransactionType());
         mav.addObject("transactionOfCustomer", customerService.getTransactionsOfCustomer(id));
         mav.addObject(SystemConstant.MODEL, model);
