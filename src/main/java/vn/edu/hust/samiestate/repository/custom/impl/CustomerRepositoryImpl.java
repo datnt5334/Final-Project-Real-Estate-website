@@ -1,7 +1,6 @@
 package vn.edu.hust.samiestate.repository.custom.impl;
 
 import org.springframework.data.domain.Pageable;
-import vn.edu.hust.samiestate.builder.BuildingSearchBuilder;
 import vn.edu.hust.samiestate.builder.CustomerSearchBuilder;
 import vn.edu.hust.samiestate.constant.SystemConstant;
 import vn.edu.hust.samiestate.entity.CustomerEntity;
@@ -25,15 +24,15 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
     public List<CustomerEntity> findByCondition(CustomerSearchBuilder builder, Pageable pageable) {
         StringBuilder sql = new StringBuilder("SELECT c.* FROM customer AS c");
 
-        StringBuilder joinQuery = new StringBuilder();
-        StringBuilder normalQuery = new StringBuilder();
-        StringBuilder specialQuery = new StringBuilder();
+        StringBuilder joinFindQuery = new StringBuilder();
+        StringBuilder normalFindQuery = new StringBuilder();
+        StringBuilder specialFindQuery = new StringBuilder();
 
-        buildJoinQuery(builder, joinQuery);
-        buildNormalWhereQuery(builder, normalQuery);
-        buildSpecialWhereQuery(builder, specialQuery);
+        buildJoinQuery(builder, joinFindQuery);
+        buildNormalWhereQuery(builder, normalFindQuery);
+        buildSpecialWhereQuery(builder, specialFindQuery);
 
-        sql.append(joinQuery).append(" WHERE 1 = 1").append(normalQuery).append(specialQuery)
+        sql.append(joinFindQuery).append(" WHERE 1 = 1").append(normalFindQuery).append(specialFindQuery)
                 .append(" GROUP BY c.id").append(" ORDER BY c.id ASC");
 
         Long offset = pageable.getOffset();

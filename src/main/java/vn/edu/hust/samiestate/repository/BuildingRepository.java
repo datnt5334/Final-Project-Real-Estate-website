@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface BuildingRepository extends JpaRepository<BuildingEntity, Long>, BuildingRepositoryCustom {
     void deleteByIdIn(long[] ids);
-    List<BuildingEntity> findAllByOrderByIdDesc(Pageable pageable);
+    List<BuildingEntity> findAllByOrderByCreatedDateDesc(Pageable pageable);
+    List<BuildingEntity> findByLevel(String level, Pageable pageable);
 }

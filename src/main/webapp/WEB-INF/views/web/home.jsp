@@ -10,7 +10,7 @@
 <!--/ Carousel Star /-->
 <div class="intro intro-carousel">
     <div id="carousel" class="owl-carousel owl-theme">
-        <c:forEach var="item" items="${buildingView}">
+        <c:forEach var="item" begin="0" end="2" items="${latestBuilding}">
             <div class="carousel-item-a intro-item bg-image" style="background-image: url(${item.image})">
                 <div class="overlay overlay-a"></div>
                 <div class="intro-content display-table">

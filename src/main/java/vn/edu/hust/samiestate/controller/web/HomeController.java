@@ -23,21 +23,13 @@ public class HomeController {
     @RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
     public ModelAndView homePage() {
         ModelAndView mav = new ModelAndView("web/home");
-        mav.addObject("buildingView", buildingService.getLatestBuildings(
-                PageRequest.of(0, 3)));
         mav.addObject("latestBuilding", buildingService.getLatestBuildings(
                 PageRequest.of(0, 4)));
-        BuildingSearchRequest request1 = new BuildingSearchRequest();
-        request1.setLevel("A");
-        BuildingSearchRequest request2 = new BuildingSearchRequest();
-        request2.setLevel("B");
-        BuildingSearchRequest request3 = new BuildingSearchRequest();
-        request3.setLevel("C");
-        mav.addObject("buildingRankA", buildingService.getBuildings(request1,
+        mav.addObject("buildingRankA", buildingService.getBuildingByLevel("A",
                 PageRequest.of(0, 3)));
-        mav.addObject("buildingRankB", buildingService.getBuildings(request2,
+        mav.addObject("buildingRankB", buildingService.getBuildingByLevel("B",
                 PageRequest.of(0, 3)));
-        mav.addObject("buildingRankC", buildingService.getBuildings(request3,
+        mav.addObject("buildingRankC", buildingService.getBuildingByLevel("C",
                 PageRequest.of(0, 3)));
         mav.addObject(SystemConstant.DISTRICT_MAP, districtService.getDistrict());
         mav.addObject(SystemConstant.MODEL_SEARCH, new BuildingSearchRequest());

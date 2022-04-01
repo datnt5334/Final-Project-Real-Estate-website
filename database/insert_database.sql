@@ -4,7 +4,7 @@ insert into role(code,name) values('ROLE_MANAGER','Quản lý');
 insert into role(code,name) values('ROLE_STAFF','Nhân viên');
 
 insert into users(username,password,fullname,status)
-values('manager1','$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG','Nguyễn Thành Đạt',1);
+values('manager','$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG','Nguyễn Thành Đạt',1);
 insert into users(username,password,fullname,status)
 values('dovantrung','$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG','Đỗ Văn Trung',1);
 

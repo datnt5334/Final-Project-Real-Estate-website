@@ -30,6 +30,7 @@ import vn.edu.hust.samiestate.service.ICustomerService;
 import vn.edu.hust.samiestate.utils.ValidateUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService implements ICustomerService {
@@ -83,7 +84,6 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public List<CustomerSearchResponse> getCustomers(CustomerSearchRequest request, Pageable pageable) {
-        List<CustomerSearchResponse> results = new ArrayList<>();
 
         if (SecurityUtils.getAuthorities().contains(SystemConstant.STAFF_ROLE)) {
             request.setStaffId(SecurityUtils.getPrincipal().getId());
@@ -93,9 +93,8 @@ public class CustomerService implements ICustomerService {
 
         List<CustomerEntity> customerEntities = customerRepository.findByCondition(builder, pageable);
 
-        for (CustomerEntity item : customerEntities) {
-            results.add(customerConverter.convertToCustomerSearchResponse(item));
-        }
+        List<CustomerSearchResponse> results = customerEntities.stream().map(item ->
+                customerConverter.convertToCustomerSearchResponse(item)).collect(Collectors.toList());
 
         return results;
 
@@ -113,25 +112,24 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public List<StaffAssignResponse> getStaffsOfCustomer(Long customerId) {
-        List<StaffAssignResponse> results = new ArrayList<>();
+
         List<UserEntity> allStaffs = userRepository.findByStatusAndRoles_Code(1, SystemConstant.STAFF_ROLE);
         List<UserEntity> staffOfCustomer = userRepository.findByCustomers_Id(customerId);
-        for (UserEntity item : allStaffs) {
-            results.add(userConverter.convertToStaffAssignResponse(item, staffOfCustomer));
-        }
+
+        List<StaffAssignResponse> results = allStaffs.stream().map(item ->
+                userConverter.convertToStaffAssignResponse(item, staffOfCustomer)).collect(Collectors.toList());
+
         return results;
     }
 
     @Override
     public List<TransactionResponse> getTransactionsOfCustomer(Long customerId) {
-        List<TransactionResponse> results = new ArrayList<>();
 
         Optional<CustomerEntity> customerFound = Optional.ofNullable(customerRepository.findById(customerId))
                 .orElseThrow(() -> new NotFoundException("Customer not found!"));
 
-        for (TransactionEntity entity : customerFound.get().getTransactionEntities()) {
-            results.add(transactionConverter.convertToResponse(entity));
-        }
+        List<TransactionResponse> results = customerFound.get().getTransactionEntities().stream()
+                .map(item -> transactionConverter.convertToResponse(item)).collect(Collectors.toList());
 
         return results;
     }
@@ -139,24 +137,28 @@ public class CustomerService implements ICustomerService {
     @Override
     @Transactional
     public void assignCustomerToStaff(AssignmentCustomerRequest request) {
-        List<Long> staffIds = new ArrayList<>(Arrays.asList(request.getStaffIds()));
 
-        Long customerId = request.getCustomerId();
+        if (Objects.nonNull(request)) {
 
-        Optional<CustomerEntity> customerFoundOptional = Optional.ofNullable(customerRepository.findById(customerId))
-                .orElseThrow(() -> new NotFoundException("Customer not found"));
+            List<Long> staffIds = new ArrayList<>(Arrays.asList(request.getStaffIds()));
+            Long customerId = request.getCustomerId();
 
-        List<UserEntity> newStaffs = new ArrayList<>();
+            if (ValidateUtils.isValidProperty(customerId)) {
+                Optional<CustomerEntity> customerFoundOptional = Optional.ofNullable(customerRepository.findById(customerId))
+                        .orElseThrow(() -> new NotFoundException("Customer not found"));
 
-        for (Long item: staffIds) {
-            Optional<UserEntity> userFoundOptional = Optional.ofNullable(userRepository.findById(item))
-                    .orElseThrow(() -> new NotFoundException("User not found"));
-            newStaffs.add(userFoundOptional.get());
+                List<UserEntity> newStaffs = staffIds.stream().map(item -> {
+                    Optional<UserEntity> userFoundOptional = Optional.ofNullable(userRepository.findById(item))
+                            .orElseThrow(() -> new NotFoundException("User not found"));
+                    return userFoundOptional.get();
+                }).collect(Collectors.toList());
+
+                customerFoundOptional.get().setUsers(newStaffs);
+
+                customerRepository.save(customerFoundOptional.get());
+            }
+
         }
-
-        customerFoundOptional.get().setUsers(newStaffs);
-
-        customerRepository.save(customerFoundOptional.get());
     }
 
     @Override
@@ -169,26 +171,29 @@ public class CustomerService implements ICustomerService {
     @Transactional
     public void createTransaction(Long customerId, TransactionRequest request) {
 
-        Optional<CustomerEntity> customerFoundOptional = Optional.ofNullable(customerRepository.findById(customerId))
-                .orElseThrow(() -> new NotFoundException("Customer not found!"));
+        if (ValidateUtils.isValidProperty(customerId) && Objects.nonNull(request)) {
 
-        Optional<UserEntity> userFoundOptional = Optional.ofNullable(userRepository.findById(SecurityUtils.getPrincipal().getId()))
-                .orElseThrow(() -> new NotFoundException("User not found!"));
+            Optional<CustomerEntity> customerFoundOptional = Optional.ofNullable(customerRepository.findById(customerId))
+                    .orElseThrow(() -> new NotFoundException("Customer not found!"));
 
-        TransactionTypeEntity typeFound = Optional.ofNullable(transactionTypeRepository.findByCode(request.getTransactionCode()))
-                .orElseThrow(() -> new NotFoundException("Transaction type not found!"));
+            Optional<UserEntity> userFoundOptional = Optional.ofNullable(userRepository.findById(SecurityUtils.getPrincipal().getId()))
+                    .orElseThrow(() -> new NotFoundException("User not found!"));
 
-        List<TransactionEntity> transactionList = new ArrayList<>();
+            TransactionTypeEntity typeFound = Optional.ofNullable(transactionTypeRepository.findByCode(request.getTransactionCode()))
+                    .orElseThrow(() -> new NotFoundException("Transaction type not found!"));
 
-        TransactionEntity transactionEntity = transactionConverter.convertToEntity(request);
-        transactionEntity.setCustomer(customerFoundOptional.get());
-        transactionEntity.setUser(userFoundOptional.get());
-        transactionEntity.setTransactionType(typeFound);
-        transactionList.add(transactionEntity);
+            List<TransactionEntity> transactionList = new ArrayList<>();
 
-        customerFoundOptional.get().setTransactionEntities(transactionList);
+            TransactionEntity transactionEntity = transactionConverter.convertToEntity(request);
+            transactionEntity.setCustomer(customerFoundOptional.get());
+            transactionEntity.setUser(userFoundOptional.get());
+            transactionEntity.setTransactionType(typeFound);
+            transactionList.add(transactionEntity);
 
-        customerRepository.save(customerFoundOptional.get());
+            customerFoundOptional.get().setTransactionEntities(transactionList);
+
+            customerRepository.save(customerFoundOptional.get());
+        }
     }
 
 

@@ -29,7 +29,7 @@ public class SearchPropertiesController {
     public ModelAndView getSearchBuildings(@ModelAttribute("modelSearch") BuildingSearchRequest modelSearch,
                                      HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/search");
-        List<BuildingSearchResponse> responseList = buildingService.getBuildings(modelSearch,
+        List<BuildingSearchResponse> responseList = buildingService.getSearchBuildings(modelSearch,
                 PageRequest.of(modelSearch.getPage() - 1, modelSearch.getMaxPageItems()));
         modelSearch.setListResult(responseList);
         modelSearch.setTotalItems(buildingService.getTotalItems(modelSearch));

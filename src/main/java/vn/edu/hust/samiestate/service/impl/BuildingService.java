@@ -25,6 +25,7 @@ import vn.edu.hust.samiestate.service.IBuildingService;
 import vn.edu.hust.samiestate.utils.ValidateUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BuildingService implements IBuildingService {
@@ -52,7 +53,6 @@ public class BuildingService implements IBuildingService {
             }
 
             Long buildingId = buildingDTO.getId();
-
             BuildingEntity buildingEntity = buildingConverter.convertToEntity(buildingDTO);
 
             if (buildingId != null) {
@@ -72,8 +72,7 @@ public class BuildingService implements IBuildingService {
     }
 
     @Override
-    public List<BuildingSearchResponse> getBuildings(BuildingSearchRequest request, Pageable pageable) {
-        List<BuildingSearchResponse> results = new ArrayList<>();
+    public List<BuildingSearchResponse> getSearchBuildings(BuildingSearchRequest request, Pageable pageable) {
 
         if (SecurityUtils.getAuthorities().contains(SystemConstant.STAFF_ROLE)) {
             request.setStaffId(SecurityUtils.getPrincipal().getId());
@@ -83,22 +82,30 @@ public class BuildingService implements IBuildingService {
 
         List<BuildingEntity> buildingEntities = buildingRepository.findByCondition(builder, pageable);
 
-        for (BuildingEntity item : buildingEntities) {
-            results.add(buildingConverter.convertToBuildingSearchResponse(item));
-        }
+        List<BuildingSearchResponse> results = buildingEntities.stream().map(item ->
+                        buildingConverter.convertToBuildingSearchResponse(item)).collect(Collectors.toList());
 
         return results;
     }
 
     @Override
     public List<BuildingDTO> getLatestBuildings(Pageable pageable) {
-        List<BuildingDTO> results = new ArrayList<>();
 
-        List<BuildingEntity> buildingEntities = buildingRepository.findAllByOrderByIdDesc(pageable);
+        List<BuildingEntity> buildingEntities = buildingRepository.findAllByOrderByCreatedDateDesc(pageable);
 
-        for (BuildingEntity item: buildingEntities) {
-            results.add(buildingConverter.convertToDTO(item));
-        }
+        List<BuildingDTO> results = buildingEntities.stream().map(item ->
+                buildingConverter.convertToDTO(item)).collect(Collectors.toList());
+
+        return results;
+    }
+
+    @Override
+    public List<BuildingDTO> getBuildingByLevel(String level, Pageable pageable) {
+
+        List<BuildingEntity> buildingEntities = buildingRepository.findByLevel(level, pageable);
+
+        List<BuildingDTO> results = buildingEntities.stream().map(item ->
+                buildingConverter.convertToDTO(item)).collect(Collectors.toList());
 
         return results;
     }
@@ -115,46 +122,51 @@ public class BuildingService implements IBuildingService {
 
     @Override
     public List<StaffAssignResponse> getStaffsOfBuilding(Long buildingId) {
-        List<StaffAssignResponse> results = new ArrayList<>();
+
         List<UserEntity> allStaffs = userRepository.findByStatusAndRoles_Code(1, SystemConstant.STAFF_ROLE);
         List<UserEntity> staffOfBuilding = userRepository.findByBuildings_Id(buildingId);
-        for (UserEntity item : allStaffs) {
-            results.add(userConverter.convertToStaffAssignResponse(item, staffOfBuilding));
-        }
+
+        List<StaffAssignResponse> results = allStaffs.stream().map(item ->
+                userConverter.convertToStaffAssignResponse(item, staffOfBuilding)).collect(Collectors.toList());
+
         return results;
     }
 
     @Override
     public List<UserDTO> getAssignStaffsOfBuilding(Long buildingId) {
-        List<UserDTO> results = new ArrayList<>();
+
         List<UserEntity> staffOfBuilding = userRepository.findByBuildings_Id(buildingId);
-        for (UserEntity item : staffOfBuilding) {
-            results.add(userConverter.convertToDto(item));
-        }
+
+        List<UserDTO> results = staffOfBuilding.stream().map(item ->
+                userConverter.convertToDto(item)).collect(Collectors.toList());
+
         return results;
     }
 
     @Override
     @Transactional
     public void assignBuildingToStaff(AssignmentBuildingRequest request) {
-        List<Long> staffIds = new ArrayList<>(Arrays.asList(request.getStaffIds()));
 
-        Long buildingId = request.getBuildingId();
+        if (Objects.nonNull(request)) {
 
-        Optional<BuildingEntity> buildingFoundOptional = Optional.ofNullable(buildingRepository.findById(buildingId))
-                .orElseThrow(() -> new NotFoundException("Building not found"));
+            List<Long> staffIds = new ArrayList<>(Arrays.asList(request.getStaffIds()));
+            Long buildingId = request.getBuildingId();
 
-        List<UserEntity> newStaffs = new ArrayList<>();
+            if (ValidateUtils.isValidProperty(buildingId)) {
+                Optional<BuildingEntity> buildingFoundOptional = Optional.ofNullable(buildingRepository.findById(buildingId))
+                        .orElseThrow(() -> new NotFoundException("Building not found"));
 
-        for (Long item: staffIds) {
-            Optional<UserEntity> userFoundOptional = Optional.ofNullable(userRepository.findById(item))
-                    .orElseThrow(() -> new NotFoundException("User not found"));
-            newStaffs.add(userFoundOptional.get());
+                List<UserEntity> newStaffs = staffIds.stream().map(item -> {
+                    Optional<UserEntity> userFoundOptional = Optional.ofNullable(userRepository.findById(item))
+                            .orElseThrow(() -> new NotFoundException("User not found"));
+                    return userFoundOptional.get();
+                }).collect(Collectors.toList());
+
+                buildingFoundOptional.get().setUsers(newStaffs);
+
+                buildingRepository.save(buildingFoundOptional.get());
+            }
         }
-
-        buildingFoundOptional.get().setUsers(newStaffs);
-
-        buildingRepository.save(buildingFoundOptional.get());
     }
 
     @Override

@@ -7,7 +7,7 @@ import vn.edu.hust.samiestate.dto.TransactionTypeDTO;
 import vn.edu.hust.samiestate.service.impl.TransactionTypeService;
 
 @RestController
-@RequestMapping("/api/transaction-type")
+@RequestMapping("/api/transactionType")
 public class TransactionTypeAPI {
 
     @Autowired
@@ -23,7 +23,7 @@ public class TransactionTypeAPI {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteDistrict(@RequestBody long[] idList) {
+    public ResponseEntity<Void> deleteTransactionType(@RequestBody long[] idList) {
         if (idList.length > 0) {
             transactionTypeService.delete(idList);
         }

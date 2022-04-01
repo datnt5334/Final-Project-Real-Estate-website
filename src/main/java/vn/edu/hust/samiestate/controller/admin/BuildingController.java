@@ -36,7 +36,7 @@ public class BuildingController {
     public ModelAndView getBuilding(@ModelAttribute(SystemConstant.MODEL) BuildingSearchRequest model,
                                     HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/building/list");
-        List<BuildingSearchResponse> responseList = buildingService.getBuildings(model,
+        List<BuildingSearchResponse> responseList = buildingService.getSearchBuildings(model,
                 PageRequest.of(model.getPage() - 1, model.getMaxPageItems()));
         model.setListResult(responseList);
         model.setTotalItems(buildingService.getTotalItems(model));

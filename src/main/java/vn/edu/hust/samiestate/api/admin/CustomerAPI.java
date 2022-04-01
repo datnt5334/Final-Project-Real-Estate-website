@@ -51,20 +51,20 @@ public class CustomerAPI {
         return results;
     }
 
-    @PostMapping("/{customerId}/transaction")
-    public void createTransaction(@PathVariable("customerId") Long customerId,
-                                  @RequestBody TransactionRequest request) {
+    @PostMapping("/assignment")
+    public void assignCustomerToStaff(@RequestBody AssignmentCustomerRequest request) {
         try {
-            customerService.createTransaction(customerId, request);
+            customerService.assignCustomerToStaff(request);
         } catch (Exception e) {
             throw e;
         }
     }
 
-    @PostMapping("/assignment")
-    public void assignCustomerToStaff(@RequestBody AssignmentCustomerRequest request) {
+    @PostMapping("/{customerId}/transaction")
+    public void createTransaction(@PathVariable("customerId") Long customerId,
+                                  @RequestBody TransactionRequest request) {
         try {
-            customerService.assignCustomerToStaff(request);
+            customerService.createTransaction(customerId, request);
         } catch (Exception e) {
             throw e;
         }

@@ -14,8 +14,9 @@ public interface IBuildingService {
 
     BuildingDTO save(BuildingDTO buildingDTO);
     BuildingDTO findBuildingById(Long id);
-    List<BuildingSearchResponse> getBuildings(BuildingSearchRequest request, Pageable pageable);
+    List<BuildingSearchResponse> getSearchBuildings(BuildingSearchRequest request, Pageable pageable);
     List<BuildingDTO> getLatestBuildings(Pageable pageable);
+    List<BuildingDTO> getBuildingByLevel(String level, Pageable pageable);
     int getTotalItems(BuildingSearchRequest request);
     List<StaffAssignResponse> getStaffsOfBuilding(Long buildingId);
     List<UserDTO> getAssignStaffsOfBuilding(Long buildingId);

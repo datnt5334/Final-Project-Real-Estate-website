@@ -24,15 +24,15 @@ public class BuildingRepositoryImpl implements BuildingRepositoryCustom {
     public List<BuildingEntity> findByCondition(BuildingSearchBuilder builder, Pageable pageable) {
         StringBuilder sql = new StringBuilder("SELECT b.* FROM building AS b");
 
-        StringBuilder joinQuery = new StringBuilder();
-        StringBuilder normalQuery = new StringBuilder();
-        StringBuilder specialQuery = new StringBuilder();
+        StringBuilder joinFindQuery = new StringBuilder();
+        StringBuilder normalFindQuery = new StringBuilder();
+        StringBuilder specialFindQuery = new StringBuilder();
 
-        buildJoinQuery(builder, joinQuery);
-        buildNormalWhereQuery(builder, normalQuery);
-        buildSpecialWhereQuery(builder, specialQuery);
+        buildJoinQuery(builder, joinFindQuery);
+        buildNormalWhereQuery(builder, normalFindQuery);
+        buildSpecialWhereQuery(builder, specialFindQuery);
 
-        sql.append(joinQuery).append(" WHERE 1 = 1").append(normalQuery).append(specialQuery)
+        sql.append(joinFindQuery).append(" WHERE 1 = 1").append(normalFindQuery).append(specialFindQuery)
                 .append(" GROUP BY b.id");
 
         Long offset = pageable.getOffset();
