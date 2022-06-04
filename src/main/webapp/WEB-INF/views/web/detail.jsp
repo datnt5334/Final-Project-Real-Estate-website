@@ -134,14 +134,30 @@
                             </div>
                         </div>
                         <div class="property-description">
-                            <p class="description color-text-a">
-                                ${model.note}
-                            </p>
+                            ${model.note}
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">Kết cấu tòa nhà</h3>
+                                </div>
+                            </div>
                         </div>
                         <div class="property-description">
-                            <p class="description color-text-a">
-                                Kết cấu: ${model.structure}
-                            </p>
+                            ${model.structure}
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-box-d section-t4">
+                                <h3 class="title-d">Vị trí tòa nhà</h3>
+                            </div>
+                        </div>
+                        <div class="contact-map">
+                            ${model.map}
                         </div>
                     </div>
                 </div>
@@ -226,7 +242,7 @@
     </div>
 </section>
 <!--/ Property Single End /-->
-<script type="text/javascript">
+<script>
     
     function validateForm() {
         if (grecaptcha.getResponse()) {
@@ -264,6 +280,19 @@
     let header = document.getElementById("navbarDefault");
     let current = header.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
+
+</script>
+<script>
+    document.querySelectorAll('oembed[url]').forEach(element => {
+        // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+        // to discover the media.
+        const anchor = document.createElement('a');
+
+        anchor.setAttribute('href', element.getAttribute('url'));
+        anchor.className = 'embedly-card';
+
+        element.appendChild(anchor);
+    });
 </script>
 </body>
 </html>

@@ -300,7 +300,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="overflow-y: scroll; height: 200px">
                         <table class="table align-items-center table-flush" id="staffLists">
                             <thead class="thead-light">
                             <tr>

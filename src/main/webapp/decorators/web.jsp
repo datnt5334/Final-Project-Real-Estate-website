@@ -35,6 +35,7 @@
     <link href="<c:url value="/template/web/css/style.css"/>" rel="stylesheet">
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
 
 </head>
 <body>

@@ -84,7 +84,13 @@
                             <label for="structure">
                                 <strong>Kết cấu</strong>
                             </label>
-                            <form:textarea path="structure" rows = "5" cols = "30" id="structure" cssClass="form-control"/>
+                            <form:textarea path="structure" rows = "5" cols = "30" id="structureEditor" cssClass="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="note">
+                                <strong>Ghi chú</strong>
+                            </label>
+                            <form:textarea path = "note" rows = "5" cols = "30" id="noteEditor" cssClass="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="numberOfBasement">
@@ -202,9 +208,9 @@
                         </div>
                         <div class="form-group">
                             <label for="note">
-                                <strong>Ghi chú</strong>
+                                <strong>Bản đồ</strong>
                             </label>
-                            <form:textarea path = "note" rows = "5" cols = "30" id="note" cssClass="form-control"/>
+                            <form:textarea path = "map" rows = "5" cols = "30" id="mapEditor" cssClass="form-control"/>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 img-rps">
@@ -392,6 +398,33 @@
 </div>
 
 <script type="text/javascript">
+
+    // For structure input
+    ClassicEditor.create(document.querySelector('#structureEditor'))
+        .then(editor => {
+            window.editor = editor;
+        })
+        .catch(error => {
+            console.error('There was a problem initializing the editor.', error);
+        });
+
+    // For note input
+    ClassicEditor.create(document.querySelector('#noteEditor'))
+        .then(editor => {
+            window.editor = editor;
+        })
+        .catch(error => {
+            console.error('There was a problem initializing the editor.', error);
+        });
+
+    // For map input
+    ClassicEditor.create(document.querySelector('#mapEditor'))
+        .then(editor => {
+            window.editor = editor;
+        })
+        .catch(error => {
+            console.error('There was a problem initializing the editor.', error);
+        });
 
     function previewFile() {
         const preview = document.querySelector('#avatar');

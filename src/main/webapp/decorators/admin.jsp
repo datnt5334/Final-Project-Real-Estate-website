@@ -18,7 +18,7 @@
     <script src="<c:url value="/template/admin/vendor/jquery/jquery.min.js"/>"></script>
     <script src="<c:url value="/template/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
     <script src="<c:url value="/template/admin/js/jquery.twbsPagination.js"/>" type="text/javascript"></script>
-
+    <script src="<c:url value="/template/admin/ckeditor5/ckeditor.js"/>"></script>
 </head>
 <body id="page-top">
 
