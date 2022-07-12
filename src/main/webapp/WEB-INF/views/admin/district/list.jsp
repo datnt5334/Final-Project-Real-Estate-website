@@ -15,18 +15,6 @@
             <li class="breadcrumb-item active" aria-current="page">Danh sách quận</li>
         </ol>
     </div>
-    <div class="row">
-        <div class="col-lg-12 mb4">
-            <c:if test="${not empty messageResponse}">
-                <div class="alert alert-block alert-${alert}">
-                    <button type="button" class="close" data-dismiss="alert">
-                        <i class="ace-icon fa fa-times"></i>
-                    </button>
-                        ${messageResponse}
-                </div>
-            </c:if>
-        </div>
-    </div>
     <div class="row justify-content-center">
         <div class="col-lg-5 mb-4">
             <div class="card">

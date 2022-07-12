@@ -41,7 +41,6 @@ public class DistrictService implements IDistrictService {
 
     @Override
     public List<DistrictDTO> getDistrictList() {
-
         List<DistrictDTO> results = districtRepository.findAll().stream().
                 map(item -> districtConverter.convertToDTO(item)).collect(Collectors.toList());
 

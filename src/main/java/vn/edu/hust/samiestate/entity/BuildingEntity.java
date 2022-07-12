@@ -1,5 +1,7 @@
 package vn.edu.hust.samiestate.entity;
 
+import vn.edu.hust.samiestate.enums.BuildingStatus;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,10 +19,6 @@ public class BuildingEntity extends BaseEntity {
 
     @Column(name = "ward")
     private String ward;
-
-    @Lob
-    @Column(name = "structure")
-    private String structure;
 
     @Column(name = "numberofbasement")
     private Integer numberOfBasement;
@@ -67,28 +65,23 @@ public class BuildingEntity extends BaseEntity {
     @Column(name = "renttime")
     private String rentTime;
 
-    @Column(name = "decorationtime")
-    private String decorationTime;
-
     @Column(name = "brokeragefee")
     private BigDecimal brokerageFee;
+
+    @Column(name = "statuscode", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private BuildingStatus statusCode;
 
     @Lob
     @Column(name = "note")
     private String note;
 
-    @Column(name = "map")
+    @Column(name = "map", columnDefinition="TEXT")
     private String map;
 
     @Lob
     @Column(name = "image")
     private String image;
-
-    @Column(name = "managerphone")
-    private String managerPhone;
-
-    @Column(name = "managername")
-    private String managerName;
 
     @OneToMany(mappedBy="building", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
     private List<RentAreaEntity> rentAreas = new ArrayList<>();
@@ -96,6 +89,10 @@ public class BuildingEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="district_id", nullable=false)
     private DistrictEntity district;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="land_lord_id", nullable=false)
+    private LandLordEntity landLord;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "assignmentbuilding",
@@ -125,14 +122,6 @@ public class BuildingEntity extends BaseEntity {
 
     public void setWard(String ward) {
         this.ward = ward;
-    }
-
-    public String getStructure() {
-        return structure;
-    }
-
-    public void setStructure(String structure) {
-        this.structure = structure;
     }
 
     public Integer getNumberOfBasement() {
@@ -255,14 +244,6 @@ public class BuildingEntity extends BaseEntity {
         this.rentTime = rentTime;
     }
 
-    public String getDecorationTime() {
-        return decorationTime;
-    }
-
-    public void setDecorationTime(String decorationTime) {
-        this.decorationTime = decorationTime;
-    }
-
     public BigDecimal getBrokerageFee() {
         return brokerageFee;
     }
@@ -295,22 +276,6 @@ public class BuildingEntity extends BaseEntity {
         this.image = image;
     }
 
-    public String getManagerPhone() {
-        return managerPhone;
-    }
-
-    public void setManagerPhone(String managerPhone) {
-        this.managerPhone = managerPhone;
-    }
-
-    public String getManagerName() {
-        return managerName;
-    }
-
-    public void setManagerName(String managerName) {
-        this.managerName = managerName;
-    }
-
     public List<RentAreaEntity> getRentAreas() {
         return rentAreas;
     }
@@ -319,19 +284,27 @@ public class BuildingEntity extends BaseEntity {
         this.rentAreas = rentAreas;
     }
 
-    public List<UserEntity> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<UserEntity> users) {
-        this.users = users;
-    }
-
     public DistrictEntity getDistrict() {
         return district;
     }
 
     public void setDistrict(DistrictEntity district) {
         this.district = district;
+    }
+
+    public LandLordEntity getLandLord() {
+        return landLord;
+    }
+
+    public void setLandLord(LandLordEntity landLord) {
+        this.landLord = landLord;
+    }
+
+    public List<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserEntity> users) {
+        this.users = users;
     }
 }

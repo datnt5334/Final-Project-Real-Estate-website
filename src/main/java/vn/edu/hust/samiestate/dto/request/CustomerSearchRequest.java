@@ -4,18 +4,18 @@ import vn.edu.hust.samiestate.dto.AbstractDTO;
 
 public class CustomerSearchRequest extends AbstractDTO {
 
-    private String name;
+    private String fullName;
     private String phone;
     private String email;
     private Long staffId;
     private String statusCode;
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPhone() {

@@ -62,15 +62,39 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý khách hàng</h6>
                 <a class="collapse-item" href="<c:url value='/admin/customer/list'/>">Khách hàng cho thuê</a>
+                <a class="collapse-item" href="<c:url value='/admin/landlord/list'/>">Chủ bất động sản</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNews" aria-expanded="true"
+           aria-controls="collapseNews">
+            <i class="fa fa-newspaper-o"></i>
+            <span>Quản lý bài viết</span>
+        </a>
+        <div id="collapseNews" class="collapse" aria-labelledby="headingNews" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý bài viết</h6>
+                <a class="collapse-item" href="<c:url value='/admin/category/list'/>">Danh mục bài viết</a>
+                <a class="collapse-item" href="<c:url value='/admin/news/list'/>">Bài viết</a>
             </div>
         </div>
     </li>
     <security:authorize access="hasRole('MANAGER')">
         <li class="nav-item">
-            <a class="nav-link" href="<c:url value='/admin/transaction/list'/>">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransactionType"
+               aria-expanded="true" aria-controls="collapseTransactionType">
                 <i class="fas fa-exchange-alt"></i>
                 <span>Quản lý loại giao dịch</span>
             </a>
+            <div id="collapseTransactionType" class="collapse" aria-labelledby="headingCustomer"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Quản lý loại giao dịch</h6>
+                    <a class="collapse-item" href="<c:url value='/admin/customer-transaction/list'/>">Với khách hàng</a>
+                    <a class="collapse-item" href="<c:url value='/admin/landlord-transaction/list'/>">Với chủ bất động sản</a>
+                </div>
+            </div>
         </li>
     </security:authorize>
 </ul>

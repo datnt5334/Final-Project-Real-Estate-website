@@ -5,7 +5,7 @@ public class TransactionResponse {
     private String transactionCode;
     private String note;
     private String createdDate;
-    private String staffName;
+    private String staffInfo;
 
     public String getTransactionCode() {
         return transactionCode;
@@ -31,11 +31,11 @@ public class TransactionResponse {
         this.createdDate = createdDate;
     }
 
-    public String getStaffName() {
-        return staffName;
+    public String getStaffInfo() {
+        return staffInfo;
     }
 
-    public void setStaffName(String staffName) {
-        this.staffName = staffName;
+    public void setStaffInfo(String staffInfo) {
+        this.staffInfo = staffInfo;
     }
 }

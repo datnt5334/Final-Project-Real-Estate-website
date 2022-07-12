@@ -33,18 +33,6 @@
         </ol>
     </div>
     <div class="row">
-        <div class="col-lg-12 mb4">
-            <c:if test="${not empty messageResponse}">
-                <div class="alert alert-block alert-${alert}">
-                    <button type="button" class="close" data-dismiss="alert">
-                        <i class="ace-icon fa fa-times"></i>
-                    </button>
-                        ${messageResponse}
-                </div>
-            </c:if>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-lg-12 mb-4">
             <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -52,29 +40,69 @@
                 </div>
                 <div class="card-body">
                     <form:form id="editCustomerForm" modelAttribute="model" name="editCustomerForm">
-                        <div class="form-group">
-                            <label for="name">
-                                <strong>Tên khách hàng</strong>
-                            </label>
-                            <form:input path="name" id="name" cssClass="form-control"/>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="fullName">
+                                        <strong>Họ và tên đầy đủ</strong>
+                                    </label>
+                                    <form:input path="fullName" id="fullName" cssClass="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="phone">
+                                        <strong>Số điện thoại</strong>
+                                    </label>
+                                    <form:input path="phone" id="phone" cssClass="form-control"/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">
-                                <strong>Số điện thoại</strong>
-                            </label>
-                            <form:input path="phone" id="phone" cssClass="form-control"/>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="email">
+                                        <strong>Email</strong>
+                                    </label>
+                                    <form:input path="email" cssClass="form-control" id="email"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="company">
+                                        <strong>Tên công ty</strong>
+                                    </label>
+                                    <form:input path="company" cssClass="form-control" id="company"/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">
-                                <strong>Email</strong>
-                            </label>
-                            <form:input path="email" cssClass="form-control" id="email"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="company">
-                                <strong>Tên công ty</strong>
-                            </label>
-                            <form:input path="company" cssClass="form-control" id="company"/>
+                        <div class="row">
+                            <c:if test="${not empty model.id}">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="select2Multiple">
+                                            <strong>Chọn nhân viên phụ trách</strong>
+                                        </label>
+                                        <select class="select2-multiple form-control" name="staffIds" multiple="multiple"
+                                                id="select2Multiple">
+                                            <c:forEach var="item" items="${staffsAssignCustomer}">
+                                                <option value=${item.id} ${item.selected}>${item.fullName} - ${item.employeeCode}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                            </c:if>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="statusCode">
+                                        <strong>Trạng thái khách hàng</strong>
+                                    </label>
+                                    <form:select path="statusCode" id="statusCode" cssClass="form-control">
+                                        <form:option value="" label="--- Chọn trạng thái ---"/>
+                                        <form:options items="${customerStatusMap}"/>
+                                    </form:select>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="demand">
@@ -88,21 +116,17 @@
                             </label>
                             <form:textarea path="note" rows = "5" cols = "30" id="note" cssClass="form-control"/>
                         </div>
-                        <div class="form-group">
-                            <label for="status">
-                                <strong>Trạng thái khách hàng</strong>
-                            </label>
-                            <form:select path="status" id="status" cssClass="form-control mb-3 col-lg-3">
-                                <form:option value="" label="--- Chọn trạng thái ---"/>
-                                <form:options items="${customerStatusMap}"/>
-                            </form:select>
+                        <br />
+                        <br />
+                        <div class="d-flex justify-content-center">
+                            <button type="button" onclick="cancel()" class="btn btn-danger p-2 mr-3">Hủy bỏ</button>
+                            <c:if test="${not empty model.id}">
+                                <button type="submit" class="btn btn-primary" id="addOrUpdateCustomerBtn">Cập nhật</button>
+                            </c:if>
+                            <c:if test="${empty model.id}">
+                                <button type="submit" class="btn btn-primary" id="addOrUpdateCustomerBtn">Thêm mới</button>
+                            </c:if>
                         </div>
-                        <c:if test="${not empty model.id}">
-                            <button type="submit" class="btn btn-primary" id="addOrUpdateCustomerBtn">Cập nhật khách hàng</button>
-                        </c:if>
-                        <c:if test="${empty model.id}">
-                            <button type="submit" class="btn btn-primary" id="addOrUpdateCustomerBtn">Thêm mới khách hàng</button>
-                        </c:if>
                         <form:hidden path="id" id="customerId"/>
                     </form:form>
                 </div>
@@ -122,7 +146,7 @@
                                  </span>
                              </div>
                              <div class="table-responsive">
-                                 <table class="table align-items-center table-flush"">
+                                 <table class="table align-items-center table-flush">
                                       <thead class="thead-light">
                                           <tr>
                                               <th class="col-3">Ngày tạo</th>
@@ -137,7 +161,7 @@
                                                       <tr>
                                                           <th>${item2.createdDate}</th>
                                                           <th>${item2.note}</th>
-                                                          <th>${item2.staffName}</th>
+                                                          <th>${item2.staffInfo}</th>
                                                       </tr>
                                                   </c:if>
                                               </c:forEach>
@@ -161,38 +185,55 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        // Select2 Multiple
+        $('.select2-multiple').select2();
+    });
+
+    function cancel() {
+        window.location.href = "<c:url value='/admin/customer/list'/>";
+    }
+
     $(function() {
         $("form[name='editCustomerForm']").validate({
             rules: {
-                name: "required",
+                fullName: "required",
                 email: "required",
                 phone: "required",
-                status: "required"
+                company: "required",
+                statusCode: "required"
             },
             messages: {
-                name: "Không được bỏ trống",
+                fullName: "Không được bỏ trống",
                 email: "Không được bỏ trống",
                 phone: "Không được bỏ trống",
-                status: "Chưa được lựa chọn"
+                company: "Không được bỏ trống",
+                statusCode: "Chưa được lựa chọn"
             },
             submitHandler: function(form) {
                 let dataArray = {};
                 let formData = $("#editCustomerForm").serializeArray();
+                let staffIds = [];
                 $.each(formData, function (i, v) {
-                    dataArray["" + v.name + ""] = v.value;
+                    if (v.name == 'staffIds') {
+                        staffIds.push(v.value);
+                    } else {
+                        dataArray["" + v.name + ""] = v.value;
+                    }
                 });
+                dataArray['staffIds'] = staffIds;
                 if ($('#customerId').val() != "") {
                     let customerId = $('#customerId').val();
-                    updateBuilding(dataArray, customerId);
+                    updateCustomer(dataArray, customerId);
                 }
                 else {
-                    addBuilding(dataArray);
+                    addCustomer(dataArray);
                 }
             }
         });
     });
 
-    function addBuilding(data) {
+    function addCustomer(data) {
         $.ajax({
             url: '${formUrl}',
             type: 'POST',
@@ -208,7 +249,7 @@
         });
     }
 
-    function updateBuilding(data, id) {
+    function updateCustomer(data, id) {
         $.ajax({
             url: '${formUrl}/' + id,
             type: 'PUT',

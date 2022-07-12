@@ -75,11 +75,10 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
                     SystemConstant.EQUAL_OPERATOR));
         }
 
-        //statusCode
+        // statusCode
         String statusCode = builder.getStatusCode();
-
         if (ValidateUtils.isValidProperty(statusCode)) {
-            specialQuery.append(SqlUtils.buildQueryUsingOperator("cs.code", statusCode,
+            specialQuery.append(SqlUtils.buildQueryUsingOperator("c.statuscode", statusCode,
                     SystemConstant.EQUAL_OPERATOR));
         }
 
@@ -89,10 +88,6 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
 
         if (ValidateUtils.isValidProperty(builder.getStaffId())) {
             joinQuery.append(" INNER JOIN assignmentcustomer AS ac ON c.id = ac.customer_id");
-        }
-
-        if (ValidateUtils.isValidProperty(builder.getStatusCode())) {
-            joinQuery.append(" INNER JOIN customer_status AS cs ON c.status_id = cs.id");
         }
     }
 

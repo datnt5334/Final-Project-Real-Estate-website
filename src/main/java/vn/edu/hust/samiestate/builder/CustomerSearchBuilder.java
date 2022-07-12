@@ -2,14 +2,14 @@ package vn.edu.hust.samiestate.builder;
 
 public class CustomerSearchBuilder {
 
-    private String name;
+    private String fullName;
     private String phone;
     private String email;
     private Long staffId;
     private String statusCode;
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
     public String getPhone() {
@@ -29,7 +29,7 @@ public class CustomerSearchBuilder {
     }
 
     private CustomerSearchBuilder(Builder builder) {
-        this.name = builder.name;
+        this.fullName = builder.fullName;
         this.phone = builder.phone;
         this.email = builder.email;
         this.staffId = builder.staffId;
@@ -38,14 +38,14 @@ public class CustomerSearchBuilder {
 
     public static class Builder {
 
-        private String name;
+        private String fullName;
         private String phone;
         private String email;
         private Long staffId;
         private String statusCode;
 
-        public Builder setName(String name) {
-            this.name = name;
+        public Builder setFullName(String fullName) {
+            this.fullName = fullName;
             return this;
         }
 

@@ -14,6 +14,7 @@ import vn.edu.hust.samiestate.dto.request.AssignmentBuildingRequest;
 import vn.edu.hust.samiestate.dto.request.BuildingSearchRequest;
 import vn.edu.hust.samiestate.dto.response.BuildingSearchResponse;
 import vn.edu.hust.samiestate.dto.response.StaffAssignResponse;
+import vn.edu.hust.samiestate.dto.response.StaffAssignXYZResponse;
 import vn.edu.hust.samiestate.entity.BuildingEntity;
 import vn.edu.hust.samiestate.entity.UserEntity;
 import vn.edu.hust.samiestate.exception.FieldNullOrEmptyException;
@@ -182,7 +183,6 @@ public class BuildingService implements IBuildingService {
                 .setWard(request.getWard()).setStreet(request.getStreet())
                 .setNumberOfBasement(request.getNumberOfBasement())
                 .setDirection(request.getDirection()).setLevel(request.getLevel())
-                .setManagerName(request.getManagerName()).setManagerPhone(request.getManagerPhone())
                 .setStaffId(request.getStaffId()).setAreaRentFrom(request.getAreaRentFrom())
                 .setAreaRentTo(request.getAreaRentTo()).setCostRentFrom(request.getCostRentFrom())
                 .setCostRentTo(request.getCostRentTo()).setDistrictCode(request.getDistrictCode()).build();

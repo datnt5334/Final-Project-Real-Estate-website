@@ -21,7 +21,7 @@
                                     <div class="intro-body">
                                         <h1 class="intro-title mb-4">${item.name}</h1>
                                         <p class="intro-subtitle intro-price">
-                                            <a href="<c:url value='/chi-tiet-${item.id}'/>">
+                                            <a href="<c:url value='/building-detail-${item.id}'/>">
                                                 <span class="price-a">Giá thuê | ${item.rentPrice}$/m<sup>2</sup></span>
                                             </a>
                                         </p>
@@ -46,6 +46,11 @@
                     <div class="title-box">
                         <h2 class="title-a">Mới cập nhật</h2>
                     </div>
+                    <div class="title-link">
+                        <a href="<c:url value='/properties'/>">Xem thêm văn phòng
+                            <span class="ion-ios-arrow-forward"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,14 +65,14 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="<c:url value='/chi-tiet-${item.id}'/>">${item.name}</a>
+                                        <a href="<c:url value='/building-detail-${item.id}'/>">${item.name}</a>
                                     </h2>
                                 </div>
                                 <div class="card-body-a">
                                     <div class="price-box d-flex">
                                         <span class="price-a">Giá thuê | ${item.rentPrice}$/m<sup>2</sup></span>
                                     </div>
-                                    <a href="<c:url value='/chi-tiet-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
+                                    <a href="<c:url value='/building-detail-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>
@@ -104,6 +109,11 @@
                     <div class="title-box">
                         <h2 class="title-a">Văn phòng hạng A</h2>
                     </div>
+                    <div class="title-link">
+                        <a href="<c:url value='/properties'/>">Xem thêm văn phòng
+                            <span class="ion-ios-arrow-forward"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,14 +128,14 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="<c:url value='/chi-tiet-${item.id}'/>">${item.name}</a>
+                                        <a href="<c:url value='/building-detail-${item.id}'/>">${item.name}</a>
                                     </h2>
                                 </div>
                                 <div class="card-body-a">
                                     <div class="price-box d-flex">
                                         <span class="price-a">Giá thuê | ${item.rentPrice}$/m<sup>2</sup></span>
                                     </div>
-                                    <a href="<c:url value='/chi-tiet-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
+                                    <a href="<c:url value='/building-detail-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>
@@ -162,6 +172,11 @@
                     <div class="title-box">
                         <h2 class="title-a">Văn phòng hạng B</h2>
                     </div>
+                    <div class="title-link">
+                        <a href="<c:url value='/properties'/>">Xem thêm văn phòng
+                            <span class="ion-ios-arrow-forward"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -176,14 +191,14 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="<c:url value='/chi-tiet-${item.id}'/>">${item.name}</a>
+                                        <a href="<c:url value='/building-detail-${item.id}'/>">${item.name}</a>
                                     </h2>
                                 </div>
                                 <div class="card-body-a">
                                     <div class="price-box d-flex">
                                         <span class="price-a">Giá thuê | ${item.rentPrice}$/m<sup>2</sup></span>
                                     </div>
-                                    <a href="<c:url value='/chi-tiet-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
+                                    <a href="<c:url value='/building-detail-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>
@@ -220,6 +235,11 @@
                     <div class="title-box">
                         <h2 class="title-a">Văn phòng hạng C</h2>
                     </div>
+                    <div class="title-link">
+                        <a href="<c:url value='/properties'/>">Xem thêm văn phòng
+                            <span class="ion-ios-arrow-forward"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -234,14 +254,14 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="<c:url value='/chi-tiet-${item.id}'/>">${item.name}</a>
+                                        <a href="<c:url value='/building-detail-${item.id}'/>">${item.name}</a>
                                     </h2>
                                 </div>
                                 <div class="card-body-a">
                                     <div class="price-box d-flex">
                                         <span class="price-a">Giá thuê | ${item.rentPrice}$/m<sup>2</sup></span>
                                     </div>
-                                    <a href="<c:url value='/chi-tiet-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
+                                    <a href="<c:url value='/building-detail-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>
@@ -271,5 +291,53 @@
 </section>
 <!--/ Property End /-->
 
+<!--/ News Star /-->
+<section class="section-news section-t8">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-wrap d-flex justify-content-between">
+                    <div class="title-box">
+                        <h2 class="title-a">Bài viết mới nhất</h2>
+                    </div>
+                    <div class="title-link">
+                        <a href="<c:url value='/all-news'/>">Tất cả bài viết
+                            <span class="ion-ios-arrow-forward"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new-carousel" class="owl-carousel owl-theme">
+            <c:forEach var="item" items="${latestNews}">
+                <div class="carousel-item-c">
+                    <div class="card-box-b card-shadow news-box">
+                        <div class="img-box-b">
+                            <img src="${item.thumbnail}" alt="" class="img-b img-fluid" style="height: 350px">
+                        </div>
+                        <div class="card-overlay">
+                            <div class="card-header-b">
+                                <div class="card-category-b">
+                                    <a href="<c:url value='/news'>
+                                   <c:param name="categoryCode" value="${item.categoryCode}"/>
+                                </c:url>" class="category-b">${item.categoryName}</a>
+                                </div>
+                                <div class="card-title-b">
+                                    <h2 class="title-2">
+                                        <a href="<c:url value='/news-detail-${item.id}'/>">${item.title}</a>
+                                    </h2>
+                                </div>
+                                <div class="card-date">
+                                    <span class="date-b">${item.createdDate}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</section>
+<!--/ News End /-->
 </body>
 </html>

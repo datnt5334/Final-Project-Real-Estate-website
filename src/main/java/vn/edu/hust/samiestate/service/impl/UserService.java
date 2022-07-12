@@ -1,7 +1,6 @@
 package vn.edu.hust.samiestate.service.impl;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,17 +26,18 @@ import java.util.stream.Stream;
 @Service
 public class UserService implements IUserService {
 
-    @Autowired
-    private UserConverter userConverter;
+    private final UserConverter userConverter;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private RoleRepository roleRepository;
+    public UserService(UserConverter userConverter, UserRepository userRepository,
+                       PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
+        this.userConverter = userConverter;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     public UserDTO findOneByUserNameAndStatus(String name, int status) {
@@ -92,6 +92,7 @@ public class UserService implements IUserService {
             Optional<UserEntity> userFoundOptional = Optional.ofNullable(userRepository.findById(id))
                     .orElseThrow(() -> new NotFoundException(SystemConstant.USER_NOT_FOUND));
             UserEntity userEntity = userConverter.convertToEntity(updatedUser);
+            userEntity.setEmployeeCode(userFoundOptional.get().getEmployeeCode());
             userEntity.setUserName(userFoundOptional.get().getUserName());
             userEntity.setPassword(userFoundOptional.get().getPassword());
             userEntity.setRoles(Stream.of(roleFound).collect(Collectors.toList()));
@@ -123,6 +124,7 @@ public class UserService implements IUserService {
         UserEntity userFound = Optional.ofNullable(userRepository.findOneByUserName(userName))
                 .orElseThrow(() -> new NotFoundException(SystemConstant.USER_NOT_FOUND));
         UserEntity userEntity = userConverter.convertToEntity(userDTO);
+        userEntity.setEmployeeCode(userFound.getEmployeeCode());
         userEntity.setUserName(userFound.getUserName());
         userEntity.setRoles(userFound.getRoles());
         userEntity.setStatus(userFound.getStatus());
@@ -164,9 +166,10 @@ public class UserService implements IUserService {
         Map<Long, String> results = new HashMap<>();
         List<UserEntity> staffs = userRepository.findByStatusAndRoles_Code(1, SystemConstant.STAFF_ROLE);
         for (UserEntity item: staffs) {
-            results.put(item.getId(), item.getFullName());
+            Long staffId = item.getId();
+            String staffInfo = String.format("%s - %s", item.getFullName(), item.getEmployeeCode());
+            results.put(staffId, staffInfo);
         }
         return results;
     }
-
 }

@@ -19,20 +19,6 @@
             <li class="breadcrumb-item active" aria-current="page">Tòa nhà cho thuê</li>
         </ol>
     </div>
-
-    <div class="row">
-        <div class="col-lg-12 mb4">
-            <c:if test="${not empty messageResponse}">
-                <div class="alert alert-block alert-${alert}">
-                    <button type="button" class="close" data-dismiss="alert">
-                        <i class="ace-icon fa fa-times"></i>
-                    </button>
-                        ${messageResponse}
-                </div>
-            </c:if>
-        </div>
-    </div>
-
     <form:form modelAttribute="model" action="${formUrl}" id="buildingSearchForm" method="GET">
         <div class="card">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

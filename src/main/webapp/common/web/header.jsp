@@ -25,6 +25,22 @@
                 <li class="nav-item" id="navProperties">
                     <a class="nav-link" href="<c:url value='/properties'/>">Tòa nhà văn phòng</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Tư vấn
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <c:forEach var="item" items="${categoriesMap}">
+                            <a class="dropdown-item" href="
+                                <c:url value='/news'>
+                                   <c:param name="categoryCode" value="${item.key}"/>
+                                </c:url>">
+                                ${item.value}
+                            </a>
+                        </c:forEach>
+                    </div>
+                </li>
                 <li class="nav-item" id="navContact">
                     <a class="nav-link" href="#">Liên hệ</a>
                 </li>

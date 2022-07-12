@@ -1,6 +1,5 @@
 package vn.edu.hust.samiestate.controller.admin;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,8 +12,7 @@ import vn.edu.hust.samiestate.dto.CustomerDTO;
 import vn.edu.hust.samiestate.dto.request.CustomerSearchRequest;
 import vn.edu.hust.samiestate.dto.response.CustomerSearchResponse;
 import vn.edu.hust.samiestate.service.impl.CustomerService;
-import vn.edu.hust.samiestate.service.impl.CustomerStatusService;
-import vn.edu.hust.samiestate.service.impl.TransactionTypeService;
+import vn.edu.hust.samiestate.service.impl.CustomerTransactionTypeService;
 import vn.edu.hust.samiestate.service.impl.UserService;
 import vn.edu.hust.samiestate.utils.ResponseUtils;
 
@@ -24,17 +22,17 @@ import java.util.List;
 @Controller(value = "customerControllerOfAdmin")
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
+    private final UserService userService;
+    private final CustomerTransactionTypeService customerTransactionTypeService;
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private CustomerStatusService customerStatusService;
-
-    @Autowired
-    private TransactionTypeService transactionTypeService;
+    public CustomerController(CustomerService customerService,
+                              UserService userService,
+                              CustomerTransactionTypeService customerTransactionTypeService) {
+        this.customerService = customerService;
+        this.userService = userService;
+        this.customerTransactionTypeService = customerTransactionTypeService;
+    }
 
     @RequestMapping(value = "/admin/customer/list", method = RequestMethod.GET)
     public ModelAndView getCustomer(@ModelAttribute(SystemConstant.MODEL) CustomerSearchRequest model,
@@ -45,7 +43,7 @@ public class CustomerController {
         model.setListResult(responseList);
         model.setTotalItems(customerService.getTotalItems(model));
         mav.addObject(SystemConstant.STAFFS_MAP, userService.getStaffMaps());
-        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerStatusService.getStatus());
+        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerService.getCustomerStatus());
         ResponseUtils.initMessageResponse(mav, request);
         return mav;
     }
@@ -53,7 +51,7 @@ public class CustomerController {
     @RequestMapping(value = "/admin/customer/edit", method = RequestMethod.GET)
     public ModelAndView addCustomer(@ModelAttribute(SystemConstant.MODEL) CustomerDTO model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/customer/edit");
-        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerStatusService.getStatus());
+        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerService.getCustomerStatus());
         ResponseUtils.initMessageResponse(mav, request);
         return mav;
     }
@@ -62,9 +60,10 @@ public class CustomerController {
     public ModelAndView updateCustomer(@PathVariable("id") Long id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/customer/edit");
         CustomerDTO model = customerService.findCustomerById(id);
-        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerStatusService.getStatus());
-        mav.addObject("transactionTypesMap", transactionTypeService.getTransactionType());
-        mav.addObject("transactionOfCustomer", customerService.getTransactionsOfCustomer(id));
+        mav.addObject(SystemConstant.CUSTOMER_STATUS_MAP, customerService.getCustomerStatus());
+        mav.addObject(SystemConstant.STAFFS_ASSIGN_CUSTOMER, customerService.getStaffsOfCustomer(id));
+        mav.addObject(SystemConstant.TRANSACTION_TYPES_MAP, customerTransactionTypeService.getTransactionType());
+        mav.addObject(SystemConstant.TRANSACTION_OF_CUSTOMER, customerService.getTransactionsOfCustomer(id));
         mav.addObject(SystemConstant.MODEL, model);
         ResponseUtils.initMessageResponse(mav, request);
         return mav;

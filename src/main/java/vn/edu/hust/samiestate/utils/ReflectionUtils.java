@@ -18,6 +18,11 @@ public class ReflectionUtils {
             buildQuery(objectSearchBuilder, query, SystemConstant.CUSTOMER_ALIAS,
                     SystemConstant.SPECIAL_PARAMS_FOR_CUSTOMER_SEARCH);
         }
+
+        if (nameSearch.equals(SystemConstant.LANDLORD_SEARCH)) {
+            buildQuery(objectSearchBuilder, query, SystemConstant.LANDLORD_ALIAS,
+                    SystemConstant.SPECIAL_PARAMS_FOR_LANDLORD_SEARCH);
+        }
     }
 
     private static <T> void buildQuery(T objectSearchBuilder, StringBuilder query, String alias,

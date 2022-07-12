@@ -1,14 +1,10 @@
 package vn.edu.hust.samiestate.dto.response;
 
 public class StaffAssignResponse {
-
     private Long id;
     private String fullName;
-    private String email;
-    private String phone;
-    private String profilepicture;
-    private String checked;
-
+    private String employeeCode;
+    private String selected;
 
     public Long getId() {
         return id;
@@ -19,46 +15,26 @@ public class StaffAssignResponse {
     }
 
     public String getFullName() {
-
         return fullName;
     }
 
     public void setFullName(String fullName) {
-
         this.fullName = fullName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmployeeCode() {
+        return employeeCode;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
     }
 
-    public String getChecked() {
-
-        return checked;
+    public String getSelected() {
+        return selected;
     }
 
-    public void setChecked(String checked) {
-
-        this.checked = checked;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getProfilepicture() {
-        return profilepicture;
-    }
-
-    public void setProfilepicture(String profilepicture) {
-        this.profilepicture = profilepicture;
+    public void setSelected(String selected) {
+        this.selected = selected;
     }
 }

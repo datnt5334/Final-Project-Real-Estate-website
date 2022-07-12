@@ -1,6 +1,7 @@
 package vn.edu.hust.samiestate.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +17,26 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "employeecode", nullable = false)
+    private String employeeCode;
+
     @Column(name = "status", nullable = false)
     private Integer status;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
+
+    @Column(name = "gender", nullable = false)
+    private String gender;
 
     @Column(name = "fullname")
     private String fullName;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "gender")
-    private String gender;
+    @Column(name = "dayofbirth")
+    private LocalDate dayOfBirth;
 
     @Lob
     @Column(name = "profilepicture")
@@ -47,9 +54,17 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<CustomerEntity> customers = new ArrayList<>();
 
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST,
-            CascadeType.REMOVE})
-    private List<TransactionEntity> transactionEntities = new ArrayList<>();
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    private List<LandLordEntity> landLords = new ArrayList<>();
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+    private List<CustomerTransactionEntity> transactionEntities = new ArrayList<>();
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+    private List<LandLordTransactionEntity> landLordTransactionEntities = new ArrayList<>();
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+    private List<NewsEntity> newsEntities = new ArrayList<>();
 
     public String getUserName() {
         return userName;
@@ -139,11 +154,51 @@ public class UserEntity extends BaseEntity {
         this.customers = customers;
     }
 
-    public List<TransactionEntity> getTransactionEntities() {
+    public List<CustomerTransactionEntity> getTransactionEntities() {
         return transactionEntities;
     }
 
-    public void setTransactionEntities(List<TransactionEntity> transactionEntities) {
+    public void setTransactionEntities(List<CustomerTransactionEntity> transactionEntities) {
         this.transactionEntities = transactionEntities;
+    }
+
+    public List<NewsEntity> getNewsEntities() {
+        return newsEntities;
+    }
+
+    public void setNewsEntities(List<NewsEntity> newsEntities) {
+        this.newsEntities = newsEntities;
+    }
+
+    public LocalDate getDayOfBirth() {
+        return dayOfBirth;
+    }
+
+    public void setDayOfBirth(LocalDate dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
+    }
+
+    public String getEmployeeCode() {
+        return employeeCode;
+    }
+
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
+    }
+
+    public List<LandLordEntity> getLandLords() {
+        return landLords;
+    }
+
+    public void setLandLords(List<LandLordEntity> landLords) {
+        this.landLords = landLords;
+    }
+
+    public List<LandLordTransactionEntity> getLandLordTransactionEntities() {
+        return landLordTransactionEntities;
+    }
+
+    public void setLandLordTransactionEntities(List<LandLordTransactionEntity> landLordTransactionEntities) {
+        this.landLordTransactionEntities = landLordTransactionEntities;
     }
 }

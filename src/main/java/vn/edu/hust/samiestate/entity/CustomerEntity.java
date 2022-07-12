@@ -1,5 +1,7 @@
 package vn.edu.hust.samiestate.entity;
 
+import vn.edu.hust.samiestate.enums.CustomerStatus;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +10,8 @@ import java.util.List;
 @Table(name = "customer")
 public class CustomerEntity extends BaseEntity{
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "fullname")
+    private String fullName;
 
     @Column(name = "phone")
     private String phone;
@@ -20,12 +22,15 @@ public class CustomerEntity extends BaseEntity{
     @Column(name = "company")
     private String company;
 
-    @Lob
-    @Column(name = "note")
+    @Column(name = "note", columnDefinition="TEXT")
     private String note;
 
     @Column(name = "demand")
     private String demand;
+
+    @Column(name = "statuscode", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CustomerStatus statusCode;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "assignmentcustomer",
@@ -33,20 +38,15 @@ public class CustomerEntity extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "staff_id", nullable = false))
     private List<UserEntity> users = new ArrayList<>();
 
-    @OneToMany(mappedBy="customer", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST,
-            CascadeType.REMOVE})
-    private List<TransactionEntity> transactionEntities = new ArrayList<>();
+    @OneToMany(mappedBy="customer", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+    private List<CustomerTransactionEntity> transactionEntities = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="status_id", nullable=false)
-    private CustomerStatusEntity customerStatus;
-
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPhone() {
@@ -97,19 +97,19 @@ public class CustomerEntity extends BaseEntity{
         this.users = users;
     }
 
-    public List<TransactionEntity> getTransactionEntities() {
+    public List<CustomerTransactionEntity> getTransactionEntities() {
         return transactionEntities;
     }
 
-    public void setTransactionEntities(List<TransactionEntity> transactionEntities) {
+    public void setTransactionEntities(List<CustomerTransactionEntity> transactionEntities) {
         this.transactionEntities = transactionEntities;
     }
 
-    public CustomerStatusEntity getCustomerStatus() {
-        return customerStatus;
+    public CustomerStatus getStatusCode() {
+        return statusCode;
     }
 
-    public void setCustomerStatus(CustomerStatusEntity customerStatus) {
-        this.customerStatus = customerStatus;
+    public void setStatusCode(CustomerStatus statusCode) {
+        this.statusCode = statusCode;
     }
 }

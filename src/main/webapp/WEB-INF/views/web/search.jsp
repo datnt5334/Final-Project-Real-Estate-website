@@ -46,14 +46,14 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="<c:url value='/chi-tiet-${item.id}'/>">${item.name}</a>
+                                        <a href="<c:url value='/building-detail-${item.id}'/>">${item.name}</a>
                                     </h2>
                                 </div>
                                 <div class="card-body-a">
                                     <div class="price-box d-flex">
                                         <span class="price-a">Giá thuê | ${item.rentPrice}$/m<sup>2</sup></span>
                                     </div>
-                                    <a href="<c:url value='/chi-tiet-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
+                                    <a href="<c:url value='/building-detail-${item.id}'/>" class="link-a">Nhấn để xem chi tiết
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>

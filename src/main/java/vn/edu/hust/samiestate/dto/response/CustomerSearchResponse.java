@@ -3,7 +3,7 @@ package vn.edu.hust.samiestate.dto.response;
 public class CustomerSearchResponse {
 
     private Long id;
-    private String name;
+    private String fullName;
     private String phone;
     private String email;
     private String demand;
@@ -18,12 +18,12 @@ public class CustomerSearchResponse {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPhone() {

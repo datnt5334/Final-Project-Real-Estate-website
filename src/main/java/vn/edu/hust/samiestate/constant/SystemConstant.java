@@ -18,7 +18,17 @@ public class SystemConstant {
     public static final String MODEL_SEARCH = "modelSearch";
     public static final String DISTRICT_MAP = "districtsMap";
     public static final String STAFFS_MAP = "staffsMap";
+    public static final String STAFFS_LIST = "staffsList";
     public static final String CUSTOMER_STATUS_MAP = "customerStatusMap";
+    public static final String LANDLORD_STATUS_MAP = "landlordStatusMap";
+    public static final String CATEGORIES_MAP = "categoriesMap";
+    public static final String CATEGORY = "category";
+    public static final String STAFFS_ASSIGN_LANDLORD = "staffsAssignLandlord";
+    public static final String STAFFS_ASSIGN_CUSTOMER = "staffsAssignCustomer";
+    public static final String TRANSACTION_TYPES_MAP = "transactionTypesMap";
+    public static final String TRANSACTION_TYPES_LIST = "transactionTypeList";
+    public static final String TRANSACTION_OF_LANDLORD = "transactionOfLandlord";
+    public static final String TRANSACTION_OF_CUSTOMER = "transactionOfCustomer";
 
     //message
     public static final String INSERT_SUCCESS = "insert_success";
@@ -43,12 +53,15 @@ public class SystemConstant {
     //for search
     public static final String BUILDING_SEARCH = "Building";
     public static final String CUSTOMER_SEARCH = "Customer";
+    public static final String LANDLORD_SEARCH = "Landlord";
     public static final String BUILDING_ALIAS = "b.";
     public static final String CUSTOMER_ALIAS = "c.";
+    public static final String LANDLORD_ALIAS = "l.";
     public static final String EQUAL_OPERATOR = "=";
     public static final List<String> SPECIAL_PARAMS_FOR_BUILDING_SEARCH =
             Arrays.asList("arearentfrom", "arearentto", "costrentfrom", "costrentto", "staffid", "districtcode");
     public static final List<String> SPECIAL_PARAMS_FOR_CUSTOMER_SEARCH =
             Arrays.asList("staffid", "statuscode");
-
+    public static final List<String> SPECIAL_PARAMS_FOR_LANDLORD_SEARCH =
+            Arrays.asList("staffid", "statuscode");
 }

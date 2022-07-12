@@ -10,6 +10,8 @@ public class UserDTO extends AbstractDTO {
     private String userName;
     private String fullName;
     private String password;
+    private String employeeCode;
+    private String dayOfBirth;
     private Integer status;
     private String email;
     private String phone;
@@ -114,5 +116,21 @@ public class UserDTO extends AbstractDTO {
 
     public void setRoleDTOs(Map<String, String> roleDTOs) {
         this.roleDTOs = roleDTOs;
+    }
+
+    public String getEmployeeCode() {
+        return employeeCode;
+    }
+
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
+    }
+
+    public String getDayOfBirth() {
+        return dayOfBirth;
+    }
+
+    public void setDayOfBirth(String dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
     }
 }
